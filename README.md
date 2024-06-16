@@ -99,3 +99,15 @@ sudo docker run --name prometheus --restart always -d -p 9090:9090 prom/promethe
 sudo certbot certonly --standalone -d prometheus.jimchen.me --email jimchen4214@gmail.com --non-interactive --agree-tos
 sudo ln -sf /etc/nginx/sites-available/prometheus.jimchen.me.conf /etc/nginx/sites-enabled/
 ```
+
+## [stash](https://github.com/stashapp/stash)
+
+url: [stash.jimchen.me](https://stash.jimchen.me)
+
+```
+sudo mkdir stashapp && cd stashapp
+curl -o docker-compose.yml https://raw.githubusercontent.com/stashapp/stash/develop/docker/production/docker-compose.yml
+sudo docker-compose up -d
+sudo certbot certonly --standalone -d stash.jimchen.me --email jimchen4214@gmail.com --non-interactive --agree-tos
+sudo ln -sf /etc/nginx/sites-available/stash.jimchen.me.conf /etc/nginx/sites-enabled/
+```
