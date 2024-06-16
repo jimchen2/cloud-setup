@@ -85,7 +85,17 @@ sudo ln -sf /etc/nginx/sites-available/portainer.jimchen.me.conf /etc/nginx/site
 url: [grafana.jimchen.me](https://grafana.jimchen.me)
 
 ```
-docker run -d -p 3004:3000 --name=grafana grafana/grafana-enterprise
+docker run -d -p 3004:3000 --restart always --name=grafana grafana/grafana-enterprise
 sudo certbot certonly --standalone -d grafana.jimchen.me --email jimchen4214@gmail.com --non-interactive --agree-tos
 sudo ln -sf /etc/nginx/sites-available/grafana.jimchen.me.conf /etc/nginx/sites-enabled/
+```
+
+## [prometheus](https://github.com/prometheus/prometheus)
+
+url: [prometheus.jimchen.me](https://prometheus.jimchen.me)
+
+```
+sudo docker run --name prometheus --restart always -d -p 9090:9090 prom/prometheus
+sudo certbot certonly --standalone -d prometheus.jimchen.me --email jimchen4214@gmail.com --non-interactive --agree-tos
+sudo ln -sf /etc/nginx/sites-available/prometheus.jimchen.me.conf /etc/nginx/sites-enabled/
 ```
