@@ -13,6 +13,8 @@ sudo apt-get install docker-ce
 sudo systemctl enable --now docker
 ```
 
+## `nginx` files are in `/etc/nginx/sites-available/`
+
 ## [lobe-chat](https://github.com/lobehub/lobe-chat)
 
 url: [lobe.jimchen.me](lobe.jimchen.me)
@@ -124,3 +126,19 @@ sudo systemctl enable --now rclone-webui.service
 sudo certbot certonly --standalone -d rclone.jimchen.me --email jimchen4214@gmail.com --non-interactive --agree-tos
 sudo ln -sf /etc/nginx/sites-available/rclone.jimchen.me.conf /etc/nginx/sites-enabled/
 ```
+
+
+## [nextjs-tube](https://github.com/jimchen2/nextjs-tube)
+
+url: [tube.jimchen.me](https://tube.jimchen.me)
+
+```
+mkdir nextjs-tube && cd nextjs-tube 
+curl -o docker-compose.yml https://raw.githubusercontent.com/jimchen2/nextjs-tube/main/docker-compose.yml
+curl -o .env https://raw.githubusercontent.com/jimchen2/nextjs-tube/main/.env.example
+# configure .env, add amazon s3 access keys
+docker-compose up -d
+sudo certbot certonly --standalone -d tube.jimchen.me --email jimchen4214@gmail.com --non-interactive --agree-tos
+sudo ln -sf /etc/nginx/sites-available/tube.jimchen.me.conf /etc/nginx/sites-enabled/
+```
+
