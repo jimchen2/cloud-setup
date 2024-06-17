@@ -111,3 +111,16 @@ sudo docker-compose up -d
 sudo certbot certonly --standalone -d stash.jimchen.me --email jimchen4214@gmail.com --non-interactive --agree-tos
 sudo ln -sf /etc/nginx/sites-available/stash.jimchen.me.conf /etc/nginx/sites-enabled/
 ```
+
+## [rclone](https://github.com/rclone/rclone)
+
+url: [rclone.jimchen.me](https://rclone.jimchen.me)
+
+```
+# rclone rcd --rc-web-gui --rc-user me --rc-pass mypassword
+# change ~/.config/rclone/rclone.conf in non-root user(Ubuntu)
+# edit /etc/systemd/system/rclone-webui.service
+sudo systemctl enable --now rclone-webui.service
+sudo certbot certonly --standalone -d rclone.jimchen.me --email jimchen4214@gmail.com --non-interactive --agree-tos
+sudo ln -sf /etc/nginx/sites-available/rclone.jimchen.me.conf /etc/nginx/sites-enabled/
+```

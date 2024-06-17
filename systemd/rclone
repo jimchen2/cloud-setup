@@ -1,0 +1,13 @@
+# /etc/systemd/system/rclone-webui.service
+[Unit]
+Description=Rclone Remote Control Daemon
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/rclone rcd --rc-web-gui --rc-user []  --rc-pass []
+Restart=on-failure
+User=ubuntu
+
+[Install]
+WantedBy=multi-user.target
