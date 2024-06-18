@@ -49,6 +49,12 @@ sudo certbot certonly --standalone -d chat.jimchen.me --email jimchen4214@gmail.
 sudo ln -sf /etc/nginx/sites-available/chat.jimchen.me.conf /etc/nginx/sites-enabled/
 ```
 
+## public-s3-bucket
+
+url: [public.jimchen.me](https://public.jimchen.me)
+
+Configure Cloudfront from S3 bucket and add S3 domain and default page.
+
 ## [vaultwarden](https://github.com/dani-garcia/vaultwarden)
 
 url: [vault.jimchen.me](https://vault.jimchen.me)
