@@ -49,11 +49,6 @@ sudo certbot certonly --standalone -d chat.jimchen.me --email jimchen4214@gmail.
 sudo ln -sf /etc/nginx/sites-available/chat.jimchen.me.conf /etc/nginx/sites-enabled/
 ```
 
-## public-s3-bucket
-
-url: [public.jimchen.me](https://public.jimchen.me)
-
-Configure Cloudfront from S3 bucket and add S3 domain and default page.
 
 ## [vaultwarden](https://github.com/dani-garcia/vaultwarden)
 
@@ -134,20 +129,6 @@ sudo certbot certonly --standalone -d stash.jimchen.me --email jimchen4214@gmail
 sudo ln -sf /etc/nginx/sites-available/stash.jimchen.me.conf /etc/nginx/sites-enabled/
 ```
 
-## [rclone](https://github.com/rclone/rclone)
-
-url: [rclone.jimchen.me](https://rclone.jimchen.me)
-
-```
-# rclone rcd --rc-web-gui --rc-user me --rc-pass mypassword
-# change ~/.config/rclone/rclone.conf in non-root user(Ubuntu)
-# edit /etc/systemd/system/rclone-webui.service
-sudo systemctl enable --now rclone-webui.service
-sudo certbot certonly --standalone -d rclone.jimchen.me --email jimchen4214@gmail.com --non-interactive --agree-tos
-sudo ln -sf /etc/nginx/sites-available/rclone.jimchen.me.conf /etc/nginx/sites-enabled/
-```
-
-
 ## [nextjs-tube](https://github.com/jimchen2/nextjs-tube)
 
 url: [tube.jimchen.me](https://tube.jimchen.me)
@@ -160,5 +141,17 @@ curl -o .env https://raw.githubusercontent.com/jimchen2/nextjs-tube/main/.env.ex
 docker-compose up -d
 sudo certbot certonly --standalone -d tube.jimchen.me --email jimchen4214@gmail.com --non-interactive --agree-tos
 sudo ln -sf /etc/nginx/sites-available/tube.jimchen.me.conf /etc/nginx/sites-enabled/
+```
+
+## [s3-public-index](https://github.com/jimchen2/s3-public-index)
+
+url: [bucket.jimchen.me](https://bucket.jimchen.me)
+
+```
+mkdir s3-public-index && cd s3-public-index
+# configure .env
+docker run -d --env-file .env -p 1241:3000 jimchen2/s3-public-index:latest
+sudo certbot certonly --standalone -d bucket.jimchen.me --email jimchen4214@gmail.com --non-interactive --agree-tos
+sudo ln -sf /etc/nginx/sites-available/bucket.jimchen.me.conf /etc/nginx/sites-enabled/
 ```
 
