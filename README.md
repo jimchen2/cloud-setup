@@ -134,11 +134,7 @@ sudo ln -sf /etc/nginx/sites-available/stash.jimchen.me.conf /etc/nginx/sites-en
 url: [tube.jimchen.me](https://tube.jimchen.me)
 
 ```
-mkdir nextjs-tube && cd nextjs-tube 
-curl -o docker-compose.yml https://raw.githubusercontent.com/jimchen2/nextjs-tube/main/docker-compose.yml
-curl -o .env https://raw.githubusercontent.com/jimchen2/nextjs-tube/main/.env.example
-# configure .env, add amazon s3 access keys
-docker-compose up -d
+# see https://github.com/jimchen2/nextjs-tube
 sudo certbot certonly --standalone -d tube.jimchen.me --email jimchen4214@gmail.com --non-interactive --agree-tos
 sudo ln -sf /etc/nginx/sites-available/tube.jimchen.me.conf /etc/nginx/sites-enabled/
 ```
