@@ -129,6 +129,20 @@ sudo certbot certonly --standalone -d stash.jimchen.me --email jimchen4214@gmail
 sudo ln -sf /etc/nginx/sites-available/stash.jimchen.me.conf /etc/nginx/sites-enabled/
 ```
 
+
+## [mongodb]
+
+url: [mongo.jimchen.me](https://mongo.jimchen.me)
+
+```bash
+# add mongod.conf, dockercompose
+docker-compose up -d
+# expose port 27017
+# mongosh "mongodb://admin:[]@3.228.73.172:27017/" --authenticationDatabase admin
+# connecting admin only works when specifying admin ?authSource=admin
+```
+
+
 ## [nextjs-tube](https://github.com/jimchen2/nextjs-tube)
 
 url: [tube.jimchen.me](https://tube.jimchen.me)
@@ -150,8 +164,21 @@ url: [bucket.jimchen.me](https://bucket.jimchen.me)
 ```
 mkdir s3-public-index && cd s3-public-index
 # configure .env
-docker run -d --env-file .env -p 1241:3000 jimchen2/s3-public-index:latest
+docker run -d --restart always --env-file .env -p 1241:3000 jimchen2/s3-public-index:latest 
 sudo certbot certonly --standalone -d bucket.jimchen.me --email jimchen4214@gmail.com --non-interactive --agree-tos
 sudo ln -sf /etc/nginx/sites-available/bucket.jimchen.me.conf /etc/nginx/sites-enabled/
+```
+
+## [jimchen.me](https://github.com/jimchen2/My-Website-New)
+
+url: [jimchen.me](https://jimchen.me)
+
+```bash
+# configure .env
+# double quote leads to errors
+docker run -d --restart always --env-file .env -p 3010:3000 jimchen2/my-website:latest 
+# docker run -d --restart always --env-file .env -p 3011:3000 jimchen2/my-website-zh:latest 
+sudo certbot certonly --standalone -d jimchen.me --email jimchen4214@gmail.com --non-interactive --agree-tos
+sudo ln -sf /etc/nginx/sites-available/jimchen.me.conf /etc/nginx/sites-enabled/
 ```
 
