@@ -198,7 +198,7 @@ sudo ln -sf /etc/nginx/sites-available/actual.jimchen.me.conf /etc/nginx/sites-e
 
 ## [monica](https://github.com/monicahq/monica)
 
-url: [monica.jimchen.me](https://monica.jimchen.me)
+url: [monica.jimchen.me](http://monica.jimchen.me)
 
 ```
 docker-compose up -d
