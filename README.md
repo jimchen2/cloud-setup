@@ -1,6 +1,5 @@
 ## Install latest docker and docker compose
 
-
 ### Arm on AWS
 
 ```
@@ -14,7 +13,6 @@ sudo chmod +x /usr/local/bin/docker-compose
 sudo curl -L "https://github.com/docker/compose/releases/download/v2.27.1/docker-compose-linux-x86_64" -o /usr/local/bin/docker-compose
 sudo chmod +x /usr/local/bin/docker-compose
 ```
-
 
 ```
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
@@ -48,7 +46,6 @@ sudo docker run -d -p 3000:3000 --env-file .env.next --restart always yidadaa/ch
 sudo certbot certonly --standalone -d chat.jimchen.me --email jimchen4214@gmail.com --non-interactive --agree-tos
 sudo ln -sf /etc/nginx/sites-available/chat.jimchen.me.conf /etc/nginx/sites-enabled/
 ```
-
 
 ## [vaultwarden](https://github.com/dani-garcia/vaultwarden)
 
@@ -129,7 +126,6 @@ sudo certbot certonly --standalone -d stash.jimchen.me --email jimchen4214@gmail
 sudo ln -sf /etc/nginx/sites-available/stash.jimchen.me.conf /etc/nginx/sites-enabled/
 ```
 
-
 ## [mongodb]
 
 url: [mongo.jimchen.me](https://mongo.jimchen.me)
@@ -142,17 +138,6 @@ docker-compose up -d
 # connecting admin only works when specifying admin ?authSource=admin
 ```
 
-
-## [nextjs-tube](https://github.com/jimchen2/nextjs-tube)
-
-url: [tube.jimchen.me](https://tube.jimchen.me)
-
-```
-# see https://github.com/jimchen2/nextjs-tube
-sudo certbot certonly --standalone -d tube.jimchen.me --email jimchen4214@gmail.com --non-interactive --agree-tos
-sudo ln -sf /etc/nginx/sites-available/tube.jimchen.me.conf /etc/nginx/sites-enabled/
-```
-
 ## [s3-public-index](https://github.com/jimchen2/s3-public-index)
 
 url: [bucket.jimchen.me](https://bucket.jimchen.me)
@@ -160,7 +145,7 @@ url: [bucket.jimchen.me](https://bucket.jimchen.me)
 ```
 mkdir s3-public-index && cd s3-public-index
 # configure .env
-docker run -d --restart always --env-file .env -p 1241:3000 jimchen2/s3-public-index:latest 
+docker run -d --restart always --env-file .env -p 1241:3000 jimchen2/s3-public-index:latest
 sudo certbot certonly --standalone -d bucket.jimchen.me --email jimchen4214@gmail.com --non-interactive --agree-tos
 sudo ln -sf /etc/nginx/sites-available/bucket.jimchen.me.conf /etc/nginx/sites-enabled/
 ```
@@ -172,9 +157,51 @@ url: [jimchen.me](https://jimchen.me)
 ```bash
 # configure .env
 # double quote leads to errors
-docker run -d --restart always --env-file .env -p 3010:3000 jimchen2/my-website:latest 
-# docker run -d --restart always --env-file .env -p 3011:3000 jimchen2/my-website-zh:latest 
+docker run -d --restart always --env-file .env -p 3010:3000 jimchen2/my-website:latest
+# docker run -d --restart always --env-file .env -p 3011:3000 jimchen2/my-website-zh:latest
 sudo certbot certonly --standalone -d jimchen.me --email jimchen4214@gmail.com --non-interactive --agree-tos
 sudo ln -sf /etc/nginx/sites-available/jimchen.me.conf /etc/nginx/sites-enabled/
 ```
 
+## [task-manager-nextjs](https://github.com/jimchen2/task-manager-nextjs)
+
+url: [task.jimchen.me](https://task.jimchen.me)
+
+```bash
+# configure .env
+docker run -d --restart always --env-file .env -p 3025:3000 jimchen2/task-manager-nextjs:latest
+sudo certbot certonly --standalone -d task.jimchen.me --email jimchen4214@gmail.com --non-interactive --agree-tos
+sudo ln -sf /etc/nginx/sites-available/task.jimchen.me.conf /etc/nginx/sites-enabled/
+```
+
+## [nocodb](https://github.com/nocodb/nocodb)
+
+url: [nocodb.jimchen.me](https://nocodb.jimchen.me)
+
+```bash
+# configure docker-compose.yml
+docker-compose up -d
+sudo certbot certonly --standalone -d nocodb.jimchen.me --email jimchen4214@gmail.com --non-interactive --agree-tos
+sudo ln -sf /etc/nginx/sites-available/nocodb.jimchen.me.conf /etc/nginx/sites-enabled/
+```
+
+## [actual](https://github.com/actualbudget/actual)
+
+url: [actual.jimchen.me](https://actual.jimchen.me)
+
+```
+
+docker run --pull=always --restart=unless-stopped -d -p 3037:5006 -v /data:/data --name actual-server actualbudget/actual-server:latest
+sudo certbot certonly --standalone -d actual.jimchen.me --email jimchen4214@gmail.com --non-interactive --agree-tos
+sudo ln -sf /etc/nginx/sites-available/actual.jimchen.me.conf /etc/nginx/sites-enabled/
+```
+
+## [monica](https://github.com/monicahq/monica)
+
+url: [monica.jimchen.me](https://monica.jimchen.me)
+
+```
+docker-compose up -d
+sudo certbot certonly --standalone -d monica.jimchen.me --email jimchen4214@gmail.com --non-interactive --agree-tos
+sudo ln -sf /etc/nginx/sites-available/monica.jimchen.me.conf /etc/nginx/sites-enabled/
+```

@@ -1,0 +1,49 @@
+version: '3.8'
+
+services:
+  nocodb:
+    image: nocodb/nocodb:latest
+    ports:
+      - "8080:8080"
+    environment:
+      NC_DB: "pg://db:5432?u=noco&p=secretpassword&d=nocodb"
+      NC_AUTH_JWT_SECRET: "your-very-long-and-secure-jwt-secret-key"
+      NC_PUBLIC_URL: "http://localhost:8080"  # Change this to your EC2 public IP or domain
+      NC_REDIS_URL: "redis://redis:6379"
+      NC_DISABLE_TELE: "true"
+      NC_MIN: "true"
+      # S3 configuration
+      NC_S3_BUCKET_NAME: "your-s3-bucket-name"
+      NC_S3_REGION: "your-s3-region"
+      NC_S3_ACCESS_KEY: "your-s3-access-key"
+      NC_S3_ACCESS_SECRET: "your-s3-access-secret"
+      NC_ATTACHMENT_FIELD_SIZE: "20971520"  # 20 MiB
+      NC_MAX_ATTACHMENTS_ALLOWED: "10"
+      NC_SECURE_ATTACHMENTS: "true"
+    depends_on:
+      - db
+      - redis
+    restart: always
+    volumes:
+      - nc_data:/usr/app/data
+
+  db:
+    image: postgres:13
+    environment:
+      POSTGRES_USER: noco
+      POSTGRES_PASSWORD: secretpassword
+      POSTGRES_DB: nocodb
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    restart: always
+
+  redis:
+    image: redis:6
+    restart: always
+    volumes:
+      - redis_data:/data
+
+volumes:
+  nc_data:
+  db_data:
+  redis_data:
