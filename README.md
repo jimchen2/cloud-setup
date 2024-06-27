@@ -138,14 +138,13 @@ docker-compose up -d
 # connecting admin only works when specifying admin ?authSource=admin
 ```
 
-## [s3-public-index](https://github.com/jimchen2/s3-public-index)
+## [alist](https://github.com/alist-org/alist)
 
 url: [bucket.jimchen.me](https://bucket.jimchen.me)
 
 ```
-mkdir s3-public-index && cd s3-public-index
-# configure .env
-docker run -d --restart always --env-file .env -p 1241:3000 jimchen2/s3-public-index:latest
+docker run -d --restart=always -v /etc/alist:/opt/alist/data -p 5244:5244 -e PUID=0 -e PGID=0 -e UMASK=022 --name="alist" xhofe/alist:latest
+docker exec -it alist ./alist admin set password
 sudo certbot certonly --standalone -d bucket.jimchen.me --email jimchen4214@gmail.com --non-interactive --agree-tos
 sudo ln -sf /etc/nginx/sites-available/bucket.jimchen.me.conf /etc/nginx/sites-enabled/
 ```
@@ -216,3 +215,7 @@ docker-compose up -d
 sudo certbot certonly --standalone -d monica.jimchen.me --email jimchen4214@gmail.com --non-interactive --agree-tos
 sudo ln -sf /etc/nginx/sites-available/monica.jimchen.me.conf /etc/nginx/sites-enabled/
 ```
+
+
+
+
