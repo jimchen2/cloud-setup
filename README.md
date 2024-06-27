@@ -222,5 +222,10 @@ sudo ln -sf /etc/nginx/sites-available/monica.jimchen.me.conf /etc/nginx/sites-e
 ```
 
 
+## [shadowsocks](https://github.com/shadowsocks/shadowsocks)
 
-
+```bash
+# configure docker compose
+docker-compose up -d
+# expose port 8388 on udp and tcp
+```
