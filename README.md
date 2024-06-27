@@ -1,5 +1,10 @@
 ## Install latest docker and docker compose
 
+### Cleaning Up
+
+```
+docker system prune -af --volumes
+```
 ### Arm on AWS
 
 ```
