@@ -268,3 +268,20 @@ docker run -d --name rsshub -p 1200:1200 diygod/rsshub:chromium-bundled
 sudo certbot certonly --standalone -d rss.jimchen.me --email jimchen4214@gmail.com --non-interactive --agree-tos
 sudo ln -sf /etc/nginx/sites-available/rss.jimchen.me.conf /etc/nginx/sites-enabled/
 ```
+
+## [freshrss](https://github.com/FreshRSS/FreshRSS)
+
+url: [feed.jimchen.me](https://feed.jimchen.me)
+
+```
+docker run -d --restart unless-stopped --log-opt max-size=10m \
+  -p 8092:80 \
+  -e TZ=Europe/Paris \
+  -e 'CRON_MIN=1,31' \
+  -v freshrss_data:/var/www/FreshRSS/data \
+  -v freshrss_extensions:/var/www/FreshRSS/extensions \
+  --name freshrss \
+  freshrss/freshrss
+sudo certbot certonly --standalone -d feed.jimchen.me --email jimchen4214@gmail.com --non-interactive --agree-tos
+sudo ln -sf /etc/nginx/sites-available/feed.jimchen.me.conf /etc/nginx/sites-enabled/
+```
