@@ -133,7 +133,6 @@ sudo ln -sf /etc/nginx/sites-available/stash.jimchen.me.conf /etc/nginx/sites-en
 
 ## [mongodb]
 
-url: [mongo.jimchen.me](https://mongo.jimchen.me)
 
 ```bash
 # add mongod.conf, dockercompose
@@ -228,4 +227,44 @@ sudo ln -sf /etc/nginx/sites-available/monica.jimchen.me.conf /etc/nginx/sites-e
 # configure docker compose
 docker-compose up -d
 # expose port 8388 on udp and tcp
+```
+
+
+## [nezha](https://github.com/naiba/nezha)
+
+url: [nezha.jimchen.me](https://nezha.jimchen.me)
+
+```bash
+curl -L https://raw.githubusercontent.com/naiba/nezha/master/script/install.sh -o nezha.sh && chmod +x nezha.sh && sudo ./nezha.sh
+# expose port 8008 and 5555
+sudo certbot certonly --standalone -d nezha.jimchen.me --email jimchen4214@gmail.com --non-interactive --agree-tos
+sudo ln -sf /etc/nginx/sites-available/nezha.jimchen.me.conf /etc/nginx/sites-enabled/
+```
+
+## [stirling-pdf](https://github.com/Stirling-Tools/Stirling-PDF)
+
+url: [pdf.jimchen.me](https://pdf.jimchen.me)
+
+```bash
+docker run -d \
+  -p 8033:8080 \
+  -v ./trainingData:/usr/share/tessdata \
+  -v ./extraConfigs:/configs \
+  -v ./logs:/logs \
+  -e DOCKER_ENABLE_SECURITY=false \
+  -e INSTALL_BOOK_AND_ADVANCED_HTML_OPS=false \
+  -e LANGS=en_GB \
+  --name stirling-pdf \
+  frooodle/s-pdf:latest
+sudo certbot certonly --standalone -d pdf.jimchen.me --email jimchen4214@gmail.com --non-interactive --agree-tos
+sudo ln -sf /etc/nginx/sites-available/pdf.jimchen.me.conf /etc/nginx/sites-enabled/
+```
+
+## [rsshub](https://github.com/DIYgod/RSSHub)
+
+url: [rss.jimchen.me](https://rss.jimchen.me)
+```bash
+docker run -d --name rsshub -p 1200:1200 diygod/rsshub:chromium-bundled
+sudo certbot certonly --standalone -d rss.jimchen.me --email jimchen4214@gmail.com --non-interactive --agree-tos
+sudo ln -sf /etc/nginx/sites-available/rss.jimchen.me.conf /etc/nginx/sites-enabled/
 ```
