@@ -5,6 +5,7 @@
 ```
 docker system prune -af --volumes
 ```
+
 ### Arm on AWS
 
 ```
@@ -133,7 +134,6 @@ sudo ln -sf /etc/nginx/sites-available/stash.jimchen.me.conf /etc/nginx/sites-en
 
 ## [mongodb]
 
-
 ```bash
 # add mongod.conf, dockercompose
 docker-compose up -d
@@ -220,15 +220,9 @@ sudo certbot certonly --standalone -d monica.jimchen.me --email jimchen4214@gmai
 sudo ln -sf /etc/nginx/sites-available/monica.jimchen.me.conf /etc/nginx/sites-enabled/
 ```
 
-
 ## [shadowsocks](https://github.com/shadowsocks/shadowsocks)
 
-```bash
-# configure docker compose
-docker-compose up -d
-# expose port 8388 on udp and tcp
-```
-
+See conf
 
 ## [nezha](https://github.com/naiba/nezha)
 
@@ -263,6 +257,7 @@ sudo ln -sf /etc/nginx/sites-available/pdf.jimchen.me.conf /etc/nginx/sites-enab
 ## [rsshub](https://github.com/DIYgod/RSSHub)
 
 url: [rss.jimchen.me](https://rss.jimchen.me)
+
 ```bash
 docker run -d --name rsshub -p 1200:1200 diygod/rsshub:chromium-bundled
 sudo certbot certonly --standalone -d rss.jimchen.me --email jimchen4214@gmail.com --non-interactive --agree-tos
