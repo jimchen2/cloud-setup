@@ -280,3 +280,13 @@ docker run -d --restart unless-stopped --log-opt max-size=10m \
 sudo certbot certonly --standalone -d feed.jimchen.me --email jimchen4214@gmail.com --non-interactive --agree-tos
 sudo ln -sf /etc/nginx/sites-available/feed.jimchen.me.conf /etc/nginx/sites-enabled/
 ```
+
+## [linktree](https://github.com/jimchen2/linktree)
+
+url: [link.jimchen.me](https://link.jimchen.me)
+
+```bash
+docker run -d --restart always -p 3069:3000 jimchen2/linktree:latest
+sudo certbot certonly --standalone -d link.jimchen.me --email jimchen4214@gmail.com --non-interactive --agree-tos
+sudo ln -sf /etc/nginx/sites-available/link.jimchen.me.conf /etc/nginx/sites-enabled/
+```
