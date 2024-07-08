@@ -161,7 +161,6 @@ url: [jimchen.me](https://jimchen.me)
 # configure .env
 # double quote leads to errors
 docker run -d --restart always --env-file .env -p 3010:3000 jimchen2/my-website:latest
-# docker run -d --restart always --env-file .env -p 3011:3000 jimchen2/my-website-zh:latest
 sudo certbot certonly --standalone -d jimchen.me --email jimchen4214@gmail.com --non-interactive --agree-tos
 sudo ln -sf /etc/nginx/sites-available/jimchen.me.conf /etc/nginx/sites-enabled/
 ```
