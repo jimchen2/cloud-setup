@@ -110,6 +110,12 @@ docker-compose up -d
 # connecting admin only works when specifying admin ?authSource=admin
 ```
 
+## [mongodb-to-s3](https://github.com/jimchen2/mongodb-to-s3)
+
+```bash
+docker run --env-file .env --restart always jimchen2/mongodb-s3-backup
+```
+
 ## [alist](https://github.com/alist-org/alist)
 
 url: [bucket.jimchen.me](https://bucket.jimchen.me)
@@ -128,7 +134,7 @@ url: [jimchen.me](https://jimchen.me)
 ```bash
 # configure .env
 # double quote leads to errors
-  docker run -d --restart always --env-file .env -p 3010:3000 jimchen2/my-website:latest
+docker run -d --restart always --env-file .env -p 3010:3000 jimchen2/my-website:latest
 sudo certbot certonly --standalone -d jimchen.me --email jimchen4214@gmail.com --non-interactive --agree-tos
 sudo ln -sf /etc/nginx/sites-available/jimchen.me.conf /etc/nginx/sites-enabled/
 ```
@@ -176,7 +182,6 @@ docker run --pull=always --restart=unless-stopped -d -p 3037:5006 -v /data:/data
 sudo certbot certonly --standalone -d actual.jimchen.me --email jimchen4214@gmail.com --non-interactive --agree-tos
 sudo ln -sf /etc/nginx/sites-available/actual.jimchen.me.conf /etc/nginx/sites-enabled/
 ```
-
 
 ## [nezha](https://github.com/naiba/nezha)
 
