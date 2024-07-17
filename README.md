@@ -35,7 +35,7 @@ sudo systemctl enable --now docker
 
 ## [lobe-chat](https://github.com/lobehub/lobe-chat)
 
-url: [lobe.jimchen.me](lobe.jimchen.me)
+url: [lobe.jimchen.me](https://lobe.jimchen.me)
 
 ```
 sudo docker run -d -p 3210:3210 --env-file .env --restart always --name lobe-chat lobehub/lobe-chat
@@ -48,7 +48,7 @@ sudo ln -sf /etc/nginx/sites-available/chat.jimchen.me.conf /etc/nginx/sites-ena
 url: [chat.jimchen.me](https://chat.jimchen.me)
 
 ```
-sudo docker run -d -p 3000:3000 --env-file .env.next --restart always yidadaa/chatgpt-next-web
+sudo docker run -d -p 3000:3000 --env-file .env --restart always yidadaa/chatgpt-next-web
 sudo certbot certonly --standalone -d chat.jimchen.me --email jimchen4214@gmail.com --non-interactive --agree-tos
 sudo ln -sf /etc/nginx/sites-available/chat.jimchen.me.conf /etc/nginx/sites-enabled/
 ```
@@ -100,38 +100,6 @@ sudo certbot certonly --standalone -d portainer.jimchen.me --email jimchen4214@g
 sudo ln -sf /etc/nginx/sites-available/portainer.jimchen.me.conf /etc/nginx/sites-enabled/
 ```
 
-## [grafana](https://github.com/grafana/grafana)
-
-url: [grafana.jimchen.me](https://grafana.jimchen.me)
-
-```
-docker run -d -p 3004:3000 --restart always --name=grafana grafana/grafana-enterprise
-sudo certbot certonly --standalone -d grafana.jimchen.me --email jimchen4214@gmail.com --non-interactive --agree-tos
-sudo ln -sf /etc/nginx/sites-available/grafana.jimchen.me.conf /etc/nginx/sites-enabled/
-```
-
-## [prometheus](https://github.com/prometheus/prometheus)
-
-url: [prometheus.jimchen.me](https://prometheus.jimchen.me)
-
-```
-sudo docker run --name prometheus --restart always -d -p 9090:9090 prom/prometheus
-sudo certbot certonly --standalone -d prometheus.jimchen.me --email jimchen4214@gmail.com --non-interactive --agree-tos
-sudo ln -sf /etc/nginx/sites-available/prometheus.jimchen.me.conf /etc/nginx/sites-enabled/
-```
-
-## [stash](https://github.com/stashapp/stash)
-
-url: [stash.jimchen.me](https://stash.jimchen.me)
-
-```
-sudo mkdir stashapp && cd stashapp
-curl -o docker-compose.yml https://raw.githubusercontent.com/stashapp/stash/develop/docker/production/docker-compose.yml
-sudo docker-compose up -d
-sudo certbot certonly --standalone -d stash.jimchen.me --email jimchen4214@gmail.com --non-interactive --agree-tos
-sudo ln -sf /etc/nginx/sites-available/stash.jimchen.me.conf /etc/nginx/sites-enabled/
-```
-
 ## [mongodb]
 
 ```bash
@@ -160,7 +128,7 @@ url: [jimchen.me](https://jimchen.me)
 ```bash
 # configure .env
 # double quote leads to errors
-docker run -d --restart always --env-file .env -p 3010:3000 jimchen2/my-website:latest
+  docker run -d --restart always --env-file .env -p 3010:3000 jimchen2/my-website:latest
 sudo certbot certonly --standalone -d jimchen.me --email jimchen4214@gmail.com --non-interactive --agree-tos
 sudo ln -sf /etc/nginx/sites-available/jimchen.me.conf /etc/nginx/sites-enabled/
 ```
@@ -209,19 +177,6 @@ sudo certbot certonly --standalone -d actual.jimchen.me --email jimchen4214@gmai
 sudo ln -sf /etc/nginx/sites-available/actual.jimchen.me.conf /etc/nginx/sites-enabled/
 ```
 
-## [monica](https://github.com/monicahq/monica)
-
-url: [monica.jimchen.me](http://monica.jimchen.me)
-
-```
-docker-compose up -d
-sudo certbot certonly --standalone -d monica.jimchen.me --email jimchen4214@gmail.com --non-interactive --agree-tos
-sudo ln -sf /etc/nginx/sites-available/monica.jimchen.me.conf /etc/nginx/sites-enabled/
-```
-
-## [shadowsocks](https://github.com/shadowsocks/shadowsocks)
-
-See conf
 
 ## [nezha](https://github.com/naiba/nezha)
 
@@ -239,7 +194,7 @@ sudo ln -sf /etc/nginx/sites-available/nezha.jimchen.me.conf /etc/nginx/sites-en
 url: [pdf.jimchen.me](https://pdf.jimchen.me)
 
 ```bash
-docker run -d \
+docker run -d --restart always \
   -p 8033:8080 \
   -v ./trainingData:/usr/share/tessdata \
   -v ./extraConfigs:/configs \
@@ -258,7 +213,7 @@ sudo ln -sf /etc/nginx/sites-available/pdf.jimchen.me.conf /etc/nginx/sites-enab
 url: [rss.jimchen.me](https://rss.jimchen.me)
 
 ```bash
-docker run -d --name rsshub -p 1200:1200 diygod/rsshub:chromium-bundled
+docker run -d --name rsshub -p 1200:1200 --restart always diygod/rsshub:chromium-bundled
 sudo certbot certonly --standalone -d rss.jimchen.me --email jimchen4214@gmail.com --non-interactive --agree-tos
 sudo ln -sf /etc/nginx/sites-available/rss.jimchen.me.conf /etc/nginx/sites-enabled/
 ```
@@ -268,7 +223,7 @@ sudo ln -sf /etc/nginx/sites-available/rss.jimchen.me.conf /etc/nginx/sites-enab
 url: [feed.jimchen.me](https://feed.jimchen.me)
 
 ```
-docker run -d --restart unless-stopped --log-opt max-size=10m \
+docker run -d --restart always --log-opt max-size=10m \
   -p 8092:80 \
   -e TZ=Europe/Paris \
   -e 'CRON_MIN=1,31' \
