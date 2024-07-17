@@ -249,3 +249,56 @@ docker run -d --restart always -p 3069:3000 jimchen2/linktree:latest
 sudo certbot certonly --standalone -d link.jimchen.me --email jimchen4214@gmail.com --non-interactive --agree-tos
 sudo ln -sf /etc/nginx/sites-available/link.jimchen.me.conf /etc/nginx/sites-enabled/
 ```
+
+## [gitlab](https://about.gitlab.com/install/#amazonlinux-2023)
+
+url: [git.jimchen.me](https://git.jimchen.me)
+
+Note: This is on another instance
+
+GitLab uses significant RAM
+
+```
+# Add Ram or use at least 4 GB RAM
+sudo apt-get update && sudo apt upgrade -y
+sudo apt-get install -y curl openssh-server ca-certificates tzdata perl
+sudo apt-get install -y postfix
+curl https://packages.gitlab.com/install/repositories/gitlab/gitlab-ee/script.deb.sh | sudo bash
+sudo EXTERNAL_URL="https://git.jimchen.me" apt-get install gitlab-ee
+```
+
+Then configure [S3 Storage](https://docs.gitlab.com/ee/administration/object_storage.html#amazon-s3) in `/etc/gitlab/gitlab.rb`
+
+```
+gitlab_rails['object_store']['enabled'] = true
+gitlab_rails['object_store']['proxy_download'] = false
+gitlab_rails['object_store']['connection'] = {
+  'provider' => 'AWS',
+  'region' => 'us-east-1',
+  'aws_access_key_id' => 'YOUR_ACCESS_KEY',
+  'aws_secret_access_key' => 'YOUR_SECRET_KEY'
+}
+
+gitlab_rails['object_store']['objects']['artifacts']['bucket'] = 'jimchen4214-git'
+gitlab_rails['object_store']['objects']['artifacts']['prefix'] = 'artifacts'
+
+gitlab_rails['object_store']['objects']['external_diffs']['bucket'] = 'jimchen4214-git'
+gitlab_rails['object_store']['objects']['external_diffs']['prefix'] = 'external_diffs'
+
+gitlab_rails['object_store']['objects']['lfs']['bucket'] = 'jimchen4214-git'
+gitlab_rails['object_store']['objects']['lfs']['prefix'] = 'lfs'
+
+gitlab_rails['object_store']['objects']['uploads']['bucket'] = 'jimchen4214-git'
+gitlab_rails['object_store']['objects']['uploads']['prefix'] = 'uploads'
+
+gitlab_rails['object_store']['objects']['packages']['bucket'] = 'jimchen4214-git'
+gitlab_rails['object_store']['objects']['packages']['prefix'] = 'packages'
+
+gitlab_rails['object_store']['objects']['dependency_proxy']['bucket'] = 'jimchen4214-git'
+gitlab_rails['object_store']['objects']['dependency_proxy']['prefix'] = 'dependency-proxy'
+
+gitlab_rails['object_store']['objects']['terraform_state']['bucket'] = 'jimchen4214-git'
+gitlab_rails['object_store']['objects']['terraform_state']['prefix'] = 'terraform-state'
+```
+
+Then `sudo gitlab-ctl reconfigure`
