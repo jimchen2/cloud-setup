@@ -1,3 +1,5 @@
+## [Server Status](https://stats.uptimerobot.com/4lTgmUDD0u)
+
 ## Install latest docker and docker compose
 
 ### Cleaning Up
