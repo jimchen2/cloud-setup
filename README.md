@@ -110,12 +110,6 @@ docker-compose up -d
 # connecting admin only works when specifying admin ?authSource=admin
 ```
 
-## [mongodb-to-s3](https://github.com/jimchen2/mongodb-to-s3)
-
-```bash
-docker run --env-file .env --restart always jimchen2/mongodb-s3-backup
-```
-
 ## [alist](https://github.com/alist-org/alist)
 
 url: [bucket.jimchen.me](https://bucket.jimchen.me)
@@ -258,4 +252,12 @@ url: [git.jimchen.me](https://git.jimchen.me)
 sudo docker-compose up -d
 sudo certbot certonly --standalone -d git.jimchen.me --email jimchen4214@gmail.com --non-interactive --agree-tos
 sudo ln -sf /etc/nginx/sites-available/git.jimchen.me.conf /etc/nginx/sites-enabled/
+```
+
+
+
+## [data-backup-to-s3](https://github.com/jimchen2/data-backup-to-s3)
+
+```bash
+docker run -d --restart always --env-file .env jimchen2/data-backup-to-s3
 ```
