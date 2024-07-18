@@ -11,4 +11,4 @@ services:
     volumes:
       - ./gitea:/data
     ports:
-      - "3000:3000"
+      - "3044:3000"
