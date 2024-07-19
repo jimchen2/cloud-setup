@@ -254,14 +254,27 @@ sudo certbot certonly --standalone -d git.jimchen.me --email jimchen4214@gmail.c
 sudo ln -sf /etc/nginx/sites-available/git.jimchen.me.conf /etc/nginx/sites-enabled/
 ```
 
-## [data-backup-to-s3](https://github.com/jimchen2/data-backup-to-s3)
-
-```bash
-docker run -d --restart always --env-file .env jimchen2/data-backup-to-s3
-```
-
 ## [grafana](https://aws.amazon.com/grafana/)
 
 url: [grafana.jimchen.me](https://grafana.jimchen.me)
 
-AWS Managed Grafana
+````
+docker run -d \
+  --name=grafana \
+  --restart=always \
+  -p 3088:3000 \
+  -v grafana-storage:/var/lib/grafana \
+  -e "GF_AWS_PROFILES=default" \
+  -e "GF_AWS_default_ACCESS_KEY_ID=" \
+  -e "GF_AWS_default_SECRET_ACCESS_KEY=" \
+  -e "GF_AWS_default_REGION=us-east-1" \
+  grafana/grafana-enterprise
+sudo certbot certonly --standalone -d grafana.jimchen.me --email jimchen4214@gmail.com --non-interactive --agree-tos
+sudo ln -sf /etc/nginx/sites-available/grafana.jimchen.me.conf /etc/nginx/sites-enabled/
+```
+
+## [data-backup-to-s3](https://github.com/jimchen2/data-backup-to-s3)
+
+```bash
+docker run -d --restart always --env-file .env jimchen2/data-backup-to-s3
+````
