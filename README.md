@@ -254,10 +254,14 @@ sudo certbot certonly --standalone -d git.jimchen.me --email jimchen4214@gmail.c
 sudo ln -sf /etc/nginx/sites-available/git.jimchen.me.conf /etc/nginx/sites-enabled/
 ```
 
-
-
 ## [data-backup-to-s3](https://github.com/jimchen2/data-backup-to-s3)
 
 ```bash
 docker run -d --restart always --env-file .env jimchen2/data-backup-to-s3
 ```
+
+## [grafana](https://aws.amazon.com/grafana/)
+
+url: [grafana.jimchen.me](https://grafana.jimchen.me)
+
+AWS Managed Grafana
