@@ -1,5 +1,9 @@
 ## Install latest docker and docker compose
 
+## Server Dashboard
+
+[https://grafana.jimchen.me/public-dashboards/b6c9b0826c0b4af6b7bd4324618c5b95](https://grafana.jimchen.me/public-dashboards/b6c9b0826c0b4af6b7bd4324618c5b95)
+
 ### Cleaning Up
 
 ```
