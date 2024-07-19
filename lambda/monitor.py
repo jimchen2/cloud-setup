@@ -1,13 +1,16 @@
+## Configure os.environ.get('S3_BUCKET_NAME')
+
 import boto3
 import urllib3
 import json
 from datetime import datetime, timedelta
 import csv
 import io
-
+import os
 def lambda_handler(event, context):
     s3 = boto3.client('s3')
-    bucket_name = 'jimchen4214-status'
+    # bucket_name = 'jimchen4214-status'
+    bucket_name = os.environ.get('S3_BUCKET_NAME')
     
     endpoints = [
         {"name": "Lobe Chat", "url": "https://lobe.jimchen.me"},
@@ -50,8 +53,9 @@ def lambda_handler(event, context):
         }
         results.append(result)
     
-    # Create a single file for this run
-    key = f'{current_time.strftime("%Y%m%d%H%M%S")}_status.json'
+    # Create a folder structure and file for this run
+    timestamp = current_time.strftime("%Y/%m/%d/%H%M%S")
+    key = f'{timestamp}_status.json'
     
     # Write results to S3
     s3.put_object(
@@ -73,17 +77,20 @@ def update_csv(s3, bucket_name, current_time):
     seven_days_ago = current_time - timedelta(days=7)
     
     # Get all JSON files from the last 7 days
-    response = s3.list_objects_v2(
-        Bucket=bucket_name,
-        Prefix=seven_days_ago.strftime("%Y%m%d"),
-        MaxKeys=10000
-    )
-    
     all_results = []
-    for obj in response.get('Contents', []):
-        if obj['Key'].endswith('_status.json'):
-            file_content = s3.get_object(Bucket=bucket_name, Key=obj['Key'])['Body'].read().decode('utf-8')
-            all_results.extend(json.loads(file_content))
+    for i in range(7):
+        date = current_time - timedelta(days=i)
+        prefix = date.strftime("%Y/%m/%d/")
+        response = s3.list_objects_v2(
+            Bucket=bucket_name,
+            Prefix=prefix,
+            MaxKeys=10000
+        )
+        
+        for obj in response.get('Contents', []):
+            if obj['Key'].endswith('status.json'):
+                file_content = s3.get_object(Bucket=bucket_name, Key=obj['Key'])['Body'].read().decode('utf-8')
+                all_results.extend(json.loads(file_content))
     
     # Sort results by timestamp (newest first)
     all_results.sort(key=lambda x: x['timestamp'], reverse=True)
