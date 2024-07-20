@@ -262,7 +262,7 @@ sudo ln -sf /etc/nginx/sites-available/git.jimchen.me.conf /etc/nginx/sites-enab
 
 url: [grafana.jimchen.me](https://grafana.jimchen.me)
 
-````
+```
 docker run -d \
   --name=grafana \
   --restart=always \
@@ -277,8 +277,14 @@ sudo certbot certonly --standalone -d grafana.jimchen.me --email jimchen4214@gma
 sudo ln -sf /etc/nginx/sites-available/grafana.jimchen.me.conf /etc/nginx/sites-enabled/
 ```
 
-## [data-backup-to-s3](https://github.com/jimchen2/data-backup-to-s3)
+## Lambda Functions
 
-```bash
-docker run -d --restart always --env-file .env jimchen2/data-backup-to-s3
-````
+1. Monitor, ping websites to see if its up
+2. Backup MongoDB to S3 every 30 minutes
+3. Backup Github to S3 every week
+
+## Restore Glacier Objects
+
+1. Get objects and classes in json from a bucket
+2. Start restoring job for each Glacier Object
+3. Restore like normal objects
