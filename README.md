@@ -277,7 +277,7 @@ sudo certbot certonly --standalone -d grafana.jimchen.me --email jimchen4214@gma
 sudo ln -sf /etc/nginx/sites-available/grafana.jimchen.me.conf /etc/nginx/sites-enabled/
 ```
 
-## Lambda Functions
+## S3 Lambda Functions
 
 1. Monitor, ping websites to see if its up
 2. Backup MongoDB to S3 every 30 minutes
@@ -288,3 +288,14 @@ sudo ln -sf /etc/nginx/sites-available/grafana.jimchen.me.conf /etc/nginx/sites-
 1. Get objects and classes in json from a bucket
 2. Start restoring job for each Glacier Object
 3. Restore like normal objects
+
+## Email Server
+
+SES acts like a proxy 
+
+```
+Multiple accounts → info@iimchen.me  → AWS SES → Route to S3 && Triggers Lambda:
+  If Spam →  Bounce message  →  False positives → Senders → GitHub issues  → Me  → Debug
+  Non-spam →  WorkMail IMAP →  Email Client IMAP (access emails)
+Email Client SMTP → SES Outgoing emails
+```
