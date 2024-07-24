@@ -291,11 +291,4 @@ sudo ln -sf /etc/nginx/sites-available/grafana.jimchen.me.conf /etc/nginx/sites-
 
 ## Email Server
 
-SES acts like a proxy 
-
-```
-Multiple accounts → info@iimchen.me  → AWS SES → Route to S3 && Triggers Lambda:
-  If Spam →  Bounce message  →  False positives → Senders → GitHub issues  → Me  → Debug
-  Non-spam →  WorkMail IMAP →  Email Client IMAP (access emails)
-Email Client SMTP → SES Outgoing emails
-```
+See mail-lambda for setting up

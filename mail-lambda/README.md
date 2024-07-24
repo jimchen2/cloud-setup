@@ -1,38 +1,46 @@
-Use mail.jimchen.me as IMAP, and jimchen.me as a 
+# Email Setup
 
-asynchronously(do it in order, first save to s3 then process the message then deliver)
+## Domain Configuration
 
-set s3 notifications to the lambda
+- IMAP: mail.jimchen.me
+- General: jimchen.me
 
-Also please remove the workmail from suppression
+## Process Flow (Asynchronous)
 
-save it teh message all again in s3 please with prefix yyyy/mm/dd/hhmmss + attachment and message
+This is done in order
 
-Thunderbird configuration
+1. Save message to S3
+2. Process the message
+3. Deliver the message
 
-Inbound
-IMAP
+## Event Rules
 
+1. Save in S3 raw(Configure only `info@jimchen.me` to receive emails please)
+2. Workmail integration(this is workmail IMAP, not for SES)
 
-Port
+## Lambda Configuration
 
-993
+- Don't trigger Lambda in Mail receiving, only Trigger it with S3
+- Set S3 notifications to trigger Lambda function(Please use prefix otherwise it will cause a bad loop)
+- Remove WorkMail from suppression list
+- Preprocess Emails and filter using python scripts
+- Forward to IMAP server
+- Save message in S3 with prefix: yyyy/mm/dd/hhmmss + attachment and message
 
+## Thunderbird Configuration
 
-imap.mail.us-east-1.awsapps.com
+### Inbound (IMAP)
 
+- Server: imap.mail.us-east-1.awsapps.com
+- Port: 993
+- Security: SSL
+- Username: Full email (IMAP email, not SES)
+- Password: WorkMail password
 
-SSL
-username; full email
+### Outbound (SMTP)
 
-
-Outbound
-
-SMTP
-
-465
-TLS
-
-email-smtp.us-east-1.amazonaws.com
-
-username: IMAP user access key
+- Server: email-smtp.us-east-1.amazonaws.com
+- Port: 465
+- Security: TLS
+- Username: IMAP user access key
+- Password: IMAP user secret key

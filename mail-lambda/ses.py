@@ -38,7 +38,7 @@ def lambda_handler(event, context):
 def save_email_to_s3_again(bucket, msg):
     now = datetime.now()
     prefix = now.strftime("%Y/%m/%d/%H%M%S")
-    key = f"{prefix}_message"
+    key = f"{prefix}/message"
 
     # Save the main message
     s3.put_object(Bucket=bucket, Key=key, Body=msg.as_string())
@@ -47,7 +47,7 @@ def save_email_to_s3_again(bucket, msg):
     if msg.is_multipart():
         for part in msg.walk():
             if part.get_filename():
-                attachment_key = f"{prefix}_attachment_{part.get_filename()}"
+                attachment_key = f"{prefix}/attachment_{part.get_filename()}"
                 s3.put_object(Bucket=bucket, Key=attachment_key, Body=part.get_payload(decode=True))
 
 def filter_email(msg):
@@ -57,11 +57,10 @@ def filter_email(msg):
     
     logger.info(f"Filtering email. Headers: {headers[:100]}... Body: {body[:100]}...")
 
-    filter_keywords = ['lottery', 'win', 'prize', 'jackpot']
+    filter_keywords = ['lottery', 'aol.com','bitcoin', 'Bitcoin']
 
     for keyword in filter_keywords:
         if keyword in full_content:
-            logger.info(f"Filtered out email containing keyword: {keyword}")
             return False
     
     logger.info("Email passed filter")
@@ -111,33 +110,11 @@ def bounce_email(msg):
     If you believe this is a mistake please open an issue at https://github.com/jimchen2/docker-self-host/issues
 
     Best regards,
-    Jim Chen
-    """
-
-    bounce_html = """
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <script src="https://cdn.tailwindcss.com"></script>
-    </head>
-    <body class="bg-gray-100 font-sans">
-        <div class="max-w-2xl mx-auto my-8 p-6 bg-white rounded-lg shadow-md">
-            <h1 class="text-2xl font-bold text-gray-800 mb-4">Email Blocked</h1>
-            <p class="text-gray-600 mb-4">Dear Sender,</p>
-            <p class="text-gray-600 mb-4">Your email was caught in my junk filter and could not be delivered.</p>
-            <p class="text-gray-600 mb-4">This is an automated response. Please do not reply to this email.</p>
-            <p class="text-gray-600 mb-4">If you believe this is a mistake, please open an issue at:</p>
-            <a href="https://github.com/jimchen2/docker-self-host/issues" class="text-blue-500 hover:underline">https://github.com/jimchen2/docker-self-host/issues</a>
-            <p class="text-gray-600 mt-6">Best regards,<br>Jim Chen</p>
-        </div>
-    </body>
-    </html>
+    Jim Chen 
+    https://link.jimchen.me/
     """
 
     bounce_msg.attach(MIMEText(bounce_text, 'plain'))
-    bounce_msg.attach(MIMEText(bounce_html, 'html'))
 
     send_email(bounce_msg)
 
