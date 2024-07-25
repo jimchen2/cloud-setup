@@ -76,26 +76,39 @@ def get_email_body(msg):
 def forward_email(msg):
     new_msg = MIMEMultipart()
     new_recipient = 'jimchen@mail.jimchen.me'
+    verified_sender = 'info@jimchen.me'  # Your verified email address
 
-    for header in ['From', 'Subject', 'Date']:
-        if header in msg:
-            new_msg[header] = msg[header]
+    original_from = msg['From']
+    original_subject = msg['Subject']
 
+    new_msg['From'] = verified_sender
     new_msg['To'] = new_recipient
+    new_msg['Subject'] = f"Fwd: {original_subject} (From: {original_from})"
+
+    # Add original date
+    if 'Date' in msg:
+        new_msg['Date'] = msg['Date']
+
+    # Add a note about the original sender in the body
+    forward_note = f"---------- Forwarded message ---------\nFrom: {original_from}\nSubject: {original_subject}\n\n"
 
     if msg.is_multipart():
         for part in msg.walk():
             if part.get_content_type() in ['text/plain', 'text/html']:
-                new_msg.attach(MIMEText(part.get_payload(decode=True).decode('utf-8'), part.get_content_type().split('/')[1]))
+                content = part.get_payload(decode=True).decode('utf-8')
+                new_content = forward_note + content
+                new_msg.attach(MIMEText(new_content, part.get_content_type().split('/')[1]))
             elif part.get_filename():
                 attachment = MIMEApplication(part.get_payload(decode=True), Name=part.get_filename())
                 attachment['Content-Disposition'] = f'attachment; filename="{part.get_filename()}"'
                 new_msg.attach(attachment)
     else:
-        new_msg.attach(MIMEText(msg.get_payload(decode=True).decode('utf-8'), 'plain'))
+        content = msg.get_payload(decode=True).decode('utf-8')
+        new_content = forward_note + content
+        new_msg.attach(MIMEText(new_content, 'plain'))
 
     send_email(new_msg)
-
+    
 def bounce_email(msg):
     bounce_msg = MIMEMultipart('alternative')
     bounce_msg['From'] = 'no-reply@jimchen.me'
