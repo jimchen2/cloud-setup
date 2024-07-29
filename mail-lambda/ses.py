@@ -84,28 +84,23 @@ def forward_email(msg):
     new_msg['From'] = verified_sender
     new_msg['To'] = new_recipient
     new_msg['Subject'] = f"Fwd: {original_subject} (From: {original_from})"
-
-    # Add original date
+    new_msg['Reply-To'] = original_from  # Set the reply-to address to the original sender
+    
     if 'Date' in msg:
         new_msg['Date'] = msg['Date']
-
-    # Add a note about the original sender in the body
-    forward_note = f"---------- Forwarded message ---------\nFrom: {original_from}\nSubject: {original_subject}\n\n"
 
     if msg.is_multipart():
         for part in msg.walk():
             if part.get_content_type() in ['text/plain', 'text/html']:
                 content = part.get_payload(decode=True).decode('utf-8')
-                new_content = forward_note + content
-                new_msg.attach(MIMEText(new_content, part.get_content_type().split('/')[1]))
+                new_msg.attach(MIMEText(content, part.get_content_type().split('/')[1]))
             elif part.get_filename():
                 attachment = MIMEApplication(part.get_payload(decode=True), Name=part.get_filename())
                 attachment['Content-Disposition'] = f'attachment; filename="{part.get_filename()}"'
                 new_msg.attach(attachment)
     else:
         content = msg.get_payload(decode=True).decode('utf-8')
-        new_content = forward_note + content
-        new_msg.attach(MIMEText(new_content, 'plain'))
+        new_msg.attach(MIMEText(content, 'plain'))
 
     send_email(new_msg)
     
