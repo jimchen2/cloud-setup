@@ -258,7 +258,7 @@ sudo certbot certonly --standalone -d git.jimchen.me --email jimchen4214@gmail.c
 sudo ln -sf /etc/nginx/sites-available/git.jimchen.me.conf /etc/nginx/sites-enabled/
 ```
 
-## [grafana](https://aws.amazon.com/grafana/)
+## [grafana](https://github.com/grafana/grafana/)
 
 url: [grafana.jimchen.me](https://grafana.jimchen.me)
 
@@ -275,6 +275,18 @@ docker run -d \
   grafana/grafana-enterprise
 sudo certbot certonly --standalone -d grafana.jimchen.me --email jimchen4214@gmail.com --non-interactive --agree-tos
 sudo ln -sf /etc/nginx/sites-available/grafana.jimchen.me.conf /etc/nginx/sites-enabled/
+```
+
+
+## [metabase](https://github.com/metabase/metabase/)
+
+url: [metabase.jimchen.me](https://metabase.jimchen.me)
+
+```bash
+# configure docker-compose
+docker-compose up -d
+sudo certbot certonly --standalone -d metabase.jimchen.me --email jimchen4214@gmail.com --non-interactive --agree-tos
+sudo ln -sf /etc/nginx/sites-available/metabase.jimchen.me.conf /etc/nginx/sites-enabled/
 ```
 
 ## S3 Lambda Functions
