@@ -74,7 +74,7 @@ def get_email_body(msg):
     return msg.get_payload(decode=True).decode('utf-8')
 
 def forward_email(msg):
-    new_msg = MIMEMultipart()
+    new_msg = MIMEMultipart('mixed')
     new_recipient = 'jimchen@mail.jimchen.me'
     verified_sender = 'info@jimchen.me'  # Your verified email address
 
@@ -89,18 +89,41 @@ def forward_email(msg):
     if 'Date' in msg:
         new_msg['Date'] = msg['Date']
 
+    # Create a multipart/alternative part for the email body
+    body_part = MIMEMultipart('alternative')
+
+    # Store both plain text and HTML parts
+    text_part = None
+    html_part = None
+
     if msg.is_multipart():
         for part in msg.walk():
-            if part.get_content_type() in ['text/plain', 'text/html']:
-                content = part.get_payload(decode=True).decode('utf-8')
-                new_msg.attach(MIMEText(content, part.get_content_type().split('/')[1]))
+            if part.get_content_maintype() == 'multipart':
+                continue
+            if part.get_content_type() == 'text/plain' and not text_part:
+                text_part = MIMEText(part.get_payload(decode=True).decode(part.get_content_charset() or 'utf-8'), 'plain')
+            elif part.get_content_type() == 'text/html' and not html_part:
+                html_part = MIMEText(part.get_payload(decode=True).decode(part.get_content_charset() or 'utf-8'), 'html')
             elif part.get_filename():
+                # Handle attachments
                 attachment = MIMEApplication(part.get_payload(decode=True), Name=part.get_filename())
                 attachment['Content-Disposition'] = f'attachment; filename="{part.get_filename()}"'
                 new_msg.attach(attachment)
     else:
-        content = msg.get_payload(decode=True).decode('utf-8')
-        new_msg.attach(MIMEText(content, 'plain'))
+        content = msg.get_payload(decode=True).decode(msg.get_content_charset() or 'utf-8')
+        if msg.get_content_type() == 'text/html':
+            html_part = MIMEText(content, 'html')
+        else:
+            text_part = MIMEText(content, 'plain')
+
+    # Attach text and HTML parts to the body
+    if text_part:
+        body_part.attach(text_part)
+    if html_part:
+        body_part.attach(html_part)
+
+    # Attach the body to the main message
+    new_msg.attach(body_part)
 
     send_email(new_msg)
     
