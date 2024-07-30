@@ -2,7 +2,7 @@ import os
 import boto3
 from pymongo import MongoClient
 from bson.json_util import dumps
-from datetime import datetime
+from datetime import datetime, timedelta
 from pymongo.errors import OperationFailure
 
 def lambda_handler(event, context):
@@ -41,7 +41,35 @@ def lambda_handler(event, context):
         ExtraArgs={'StorageClass': 'STANDARD_IA'}
     )
     
+    # Remove old shallow backups
+    remove_old_backups(s3, s3_bucket)
+    
     return {
         'statusCode': 200,
         'body': f"Backup uploaded to s3://{s3_bucket}/{s3_key}"
     }
+
+def remove_old_backups(s3, bucket_name):
+    # Get current date
+    current_date = datetime.now()
+    one_week_ago = current_date - timedelta(days=7)
+
+    # List objects in the bucket
+    paginator = s3.get_paginator('list_objects_v2')
+    pages = paginator.paginate(Bucket=bucket_name)
+
+    for page in pages:
+        for obj in page.get('Contents', []):
+            key = obj['Key']
+            # Skip full backups
+            if key.startswith('full/'):
+                continue
+            
+            # Extract date from the key
+            try:
+                backup_date = datetime.strptime(key[:10], "%Y/%m/%d")
+                if backup_date < one_week_ago:
+                    s3.delete_object(Bucket=bucket_name, Key=key)
+                    print(f"Deleted old backup: {key}")
+            except ValueError:
+                continue
