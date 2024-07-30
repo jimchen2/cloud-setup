@@ -154,7 +154,7 @@ url: [markdown.jimchen.me](https://markdown.jimchen.me)
 
 ```bash
 # configure .env
-docker run -d --restart always --env-file .env -p 3025:3000 jimchen2/markdown-parser:latest
+docker run -d --restart always --env-file .env -p 3048:3000 jimchen2/markdown-parser:latest
 sudo certbot certonly --standalone -d markdown.jimchen.me --email jimchen4214@gmail.com --non-interactive --agree-tos
 sudo ln -sf /etc/nginx/sites-available/markdown.jimchen.me.conf /etc/nginx/sites-enabled/
 ```
