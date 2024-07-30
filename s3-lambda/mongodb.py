@@ -29,7 +29,8 @@ def lambda_handler(event, context):
     timestamp = current_time.strftime("%Y/%m/%d/%H%M%S")
     
     # Check if time is between 00:00 and 01:00
-    if current_time.hour == 0:
+    is_full_backup = current_time.hour == 0
+    if is_full_backup:
         s3_key = f"full/{timestamp}/backup.json"
     else:
         s3_key = f"{timestamp}/backup.json"
@@ -41,8 +42,9 @@ def lambda_handler(event, context):
         ExtraArgs={'StorageClass': 'STANDARD_IA'}
     )
     
-    # Remove old shallow backups
-    remove_old_backups(s3, s3_bucket)
+    # Remove old shallow backups only during full backup
+    if is_full_backup:
+        remove_old_backups(s3, s3_bucket)
     
     return {
         'statusCode': 200,
@@ -72,4 +74,5 @@ def remove_old_backups(s3, bucket_name):
                     s3.delete_object(Bucket=bucket_name, Key=key)
                     print(f"Deleted old backup: {key}")
             except ValueError:
+                # If the key doesn't match the expected format, skip it
                 continue
