@@ -1,53 +1,47 @@
-### DEFINE ENV VARS
-### GITHUB_USERNAME
-### GITHUB_TOKEN
-### S3_BUCKET_NAME
-
 import os
-import shutil
-import subprocess
-from datetime import datetime, timedelta
 import boto3
-import requests
+from pymongo import MongoClient
+from bson.json_util import dumps
+from datetime import datetime
+from pymongo.errors import OperationFailure
 
 def lambda_handler(event, context):
-    # Environment variables
-    USERNAME = os.environ.get('GITHUB_USERNAME')
-    TOKEN = os.environ.get('GITHUB_TOKEN')
-    S3_BUCKET = os.environ.get('S3_BUCKET_NAME')
-    TEMP_DIR = "/tmp/github_repos"
+    mongo_uri = os.environ.get('MONGODB_URI')
+    s3_bucket = os.environ.get('S3_BUCKET_NAME')
 
-    if os.path.exists(TEMP_DIR):
-        shutil.rmtree(TEMP_DIR)
-    os.makedirs(TEMP_DIR)
-    os.chdir(TEMP_DIR)
-
+    backup_file = "/tmp/mongodb_backup.json"
+    
+    # MongoDB backup
+    client = MongoClient(mongo_uri)
+    with open(backup_file, 'w') as f:
+        for db in client.list_database_names():
+            if db not in ['admin', 'local', 'config']:  # Skip system databases
+                for collection in client[db].list_collection_names():
+                    try:
+                        f.write(f"Database: {db}, Collection: {collection}\n")
+                        f.write(dumps(client[db][collection].find()) + "\n")
+                    except OperationFailure as e:
+                        f.write(f"Error accessing {db}.{collection}: {str(e)}\n")
+    
+    # Upload to S3
     s3 = boto3.client('s3')
-
-    yesterday = datetime.utcnow() - timedelta(days=1)
-
-    # Get user's repositories
-    headers = {'Authorization': f'token {TOKEN}'}
-    repos_url = f'https://api.github.com/users/{USERNAME}/repos'
-    response = requests.get(repos_url, headers=headers)
-    repos = response.json()
-
-    for repo in repos:
-        if repo['size'] < 300000 and datetime.strptime(repo['pushed_at'], '%Y-%m-%dT%H:%M:%SZ') > yesterday:
-            clone_url = repo['clone_url'].replace('https://', f'https://{TOKEN}@')
-            subprocess.run(['git', 'clone', '--depth', '1', clone_url, repo['name']], check=True)
-
-    timestamp = datetime.now().strftime("%Y/%m/%d/%H%M%S")
-    for root, dirs, files in os.walk(TEMP_DIR):
-        for file in files:
-            local_path = os.path.join(root, file)
-            relative_path = os.path.relpath(local_path, TEMP_DIR)
-            s3_key = f"{timestamp}/{relative_path}"
-            s3.upload_file(local_path, S3_BUCKET, s3_key)
-
-    shutil.rmtree(TEMP_DIR)
-
+    current_time = datetime.now()
+    timestamp = current_time.strftime("%Y/%m/%d/%H%M%S")
+    
+    # Check if time is between 00:00 and 01:00
+    if current_time.hour == 0:
+        s3_key = f"full/{timestamp}/backup.json"
+    else:
+        s3_key = f"{timestamp}/backup.json"
+    
+    s3.upload_file(
+        backup_file, 
+        s3_bucket, 
+        s3_key,
+        ExtraArgs={'StorageClass': 'STANDARD_IA'}
+    )
+    
     return {
         'statusCode': 200,
-        'body': f"GitHub repositories backed up to s3://{S3_BUCKET}/{timestamp}/"
+        'body': f"Backup uploaded to s3://{s3_bucket}/{s3_key}"
     }
