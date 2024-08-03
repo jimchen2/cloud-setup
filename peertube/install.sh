@@ -45,6 +45,7 @@ sudo -u peertube cp peertube-latest/config/production.yaml.example config/produc
 # admin.email: To correctly fill root user email
 # object storage buckets
 # Whisper engine
+# as well as enable many other features
 
 
 # Part 6 Nginx
