@@ -293,7 +293,7 @@ sudo ln -sf /etc/nginx/sites-available/metabase.jimchen.me.conf /etc/nginx/sites
 
 url: [mastodon.jimchen.me](https://mastodon.jimchen.me)
 
-See folder for specifics
+See folder for more
 
 ## S3 Lambda Functions
 
