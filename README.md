@@ -289,6 +289,21 @@ sudo certbot certonly --standalone -d metabase.jimchen.me --email jimchen4214@gm
 sudo ln -sf /etc/nginx/sites-available/metabase.jimchen.me.conf /etc/nginx/sites-enabled/
 ```
 
+## [mastodon](https://github.com/mastodon/mastodon/)
+
+url: [mastodon.jimchen.me](https://mastodon.jimchen.me)
+
+```bash
+# configure docker-compose
+docker-compose up -d
+# add TRUSTED_PROXY_IP and ALLOWED_PRIVATE_ADDRESSES
+# docker exec -it mastodon-mastodon-web-1 tootctl accounts create admin --email jimchen4214@gmail.com --confirmed --role Owner
+# change the container though
+sudo certbot certonly --standalone -d mastodon.jimchen.me --email jimchen4214@gmail.com --non-interactive --agree-tos
+sudo ln -sf /etc/nginx/sites-available/mastodon.jimchen.me.conf /etc/nginx/sites-enabled/
+```
+
+
 ## S3 Lambda Functions
 
 1. Monitor, ping websites to see if its up
