@@ -29,7 +29,7 @@ def lambda_handler(event, context):
         {"name": "FreshRSS", "url": "https://feed.jimchen.me"},
         {"name": "Linktree", "url": "https://link.jimchen.me"},
         {"name": "Gitea", "url": "https://git.jimchen.me"},
-        {"name": "Grafana", "url": "https://grafana.jimchen.me"}
+        {"name": "Grafana", "url": "https://grafana.jimchen.me"},
         {"name": "Metabase", "url": "https://metabase.jimchen.me"}
     ]
 
