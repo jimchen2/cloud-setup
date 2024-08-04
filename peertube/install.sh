@@ -46,7 +46,10 @@ sudo -u peertube cp peertube-latest/config/production.yaml.example config/produc
 # object storage buckets
 # Whisper engine
 # as well as enable many other features
-
+#   endpoint: 'http://s3.amazonaws.com' 
+#   region: 'us-east-1'
+#     base_url: 'https://jimchen4214-tube.s3.amazonaws.com/' 
+# remove the acl(buggy)
 
 # Part 6 Nginx
 sudo cp /var/www/peertube/peertube-latest/support/nginx/peertube /etc/nginx/sites-available/peertube
