@@ -50,6 +50,7 @@ sudo -u peertube cp peertube-latest/config/production.yaml.example config/produc
 #   region: 'us-east-1'
 #     base_url: 'https://jimchen4214-tube.s3.amazonaws.com' 
 # remove the acl(buggy)
+# Please also configure cors for the bucket
 
 # Part 6 Nginx
 sudo cp /var/www/peertube/peertube-latest/support/nginx/peertube /etc/nginx/sites-available/peertube
