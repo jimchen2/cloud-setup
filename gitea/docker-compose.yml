@@ -7,6 +7,8 @@ services:
     environment:
       - USER_UID=1000
       - USER_GID=1000
+      - REGISTER_MANUAL_CONFIRM=true
+      - REGISTER_EMAIL_CONFIRM=false
     restart: always
     volumes:
       - ./gitea:/data
