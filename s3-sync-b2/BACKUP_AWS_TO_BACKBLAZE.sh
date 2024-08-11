@@ -1,0 +1,10 @@
+rclone copy s3:jimchen4214-archive b2:jimchen4214-archive --progress --transfers 20
+rclone copy s3:jimchen4214-blog b2:jimchen4214-blog --progress --transfers 20
+rclone copy s3:jimchen4214-git b2:jimchen4214-git --progress --transfers 20
+rclone copy s3:jimchen4214-mail b2:jimchen4214-mail --progress --transfers 20
+rclone copy s3:jimchen4214-mongo b2:jimchen4214-mongo --progress --transfers 20
+rclone copy s3:jimchen4214-photo b2:jimchen4214-photo --progress --transfers 20
+rclone copy s3:jimchen4214-public b2:jimchen4214-public --progress --transfers 20
+rclone copy s3:jimchen4214-status b2:jimchen4214-status --progress --transfers 20
+rclone copy s3:jimchen4214-tube b2:jimchen4214-tube --progress --transfers 20
+rclone copy s3:jimchen4214-mastodon b2:jimchen4214-mastodon --progress --transfers 20
