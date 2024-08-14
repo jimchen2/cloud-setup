@@ -4,8 +4,9 @@ SMTP server is the same. Basically update all the records in Route 53.
 
 Then configure Workmail, Create Organization, Update records in Route 53 again too.
 
-AWS will create a default email receiving rule for you if you create a workmail(THIS IS VERY CONFUSING)
+**AWS will create a default email receiving rule for you if you create a workmail(THIS IS VERY CONFUSING)**
 
+Then add the backup to s3 in the rule.
 
 ### Inbound (IMAP)
 
