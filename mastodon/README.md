@@ -134,3 +134,21 @@ To resolve this issue:
 So basically like there is a permission issue. In PostgreSQL, being the owner of a database doesn't automatically grant you all permissions on that database when you're connecting as a non-root user. (This is really really confusing) 
 
 Please grant nonroot user all permissions and make sure psql logged in as nonroot user can see everything.
+
+Or basically just use Mastodon to create a database and then immeidately revoke its permission.
+
+### Postgres Migration Error
+
+```
+ALTER SEQUENCE
+CREATE SEQUENCE
+ERROR:  must be able to SET ROLE "postgres"
+ALTER SEQUENCE
+CREATE TABLE
+ERROR:  must be able to SET ROLE "postgres"
+CREATE SEQUENCE
+```
+
+### Solution
+
+Export the database with no owner rights then import.
