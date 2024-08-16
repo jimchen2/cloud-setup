@@ -37,6 +37,9 @@ sudo systemctl enable --now docker
 
 ## `nginx` files are in `/etc/nginx/sites-available/`
 
+
+
+
 ## [lobe-chat](https://github.com/lobehub/lobe-chat)
 
 url: [lobe.jimchen.me](https://lobe.jimchen.me)
@@ -57,42 +60,6 @@ sudo certbot certonly --standalone -d chat.jimchen.me --email jimchen4214@gmail.
 sudo ln -sf /etc/nginx/sites-available/chat.jimchen.me.conf /etc/nginx/sites-enabled/
 ```
 
-## [vaultwarden](https://github.com/dani-garcia/vaultwarden)
-
-url: [vault.jimchen.me](https://vault.jimchen.me)
-
-```
-sudo docker run -d --name vaultwarden -v /vw-data/:/data/ --restart always -p 3001:80 vaultwarden/server:latest
-sudo certbot certonly --standalone -d vault.jimchen.me --email jimchen4214@gmail.com --non-interactive --agree-tos
-sudo ln -sf /etc/nginx/sites-available/vault.jimchen.me.conf /etc/nginx/sites-enabled/
-```
-
-## [uptime-kuma](https://github.com/louislam/uptime-kuma)
-
-url: [status.jimchen.me](https://status.jimchen.me)
-
-```
-sudo docker run -d --restart=always -p 3002:3001 -v uptime-kuma:/app/data --name uptime-kuma louislam/uptime-kuma:1
-sudo certbot certonly --standalone -d status.jimchen.me --email jimchen4214@gmail.com --non-interactive --agree-tos
-sudo ln -sf /etc/nginx/sites-available/status.jimchen.me.conf /etc/nginx/sites-enabled/
-```
-
-## [immich](https://github.com/immich-app/immich)
-
-url: [immich.jimchen.me](https://immich.jimchen.me)
-
-```sh
-mkdir ./immich-app
-cd ./immich-app
-
-# wget -O docker-compose.yml https://github.com/immich-app/immich/releases/latest/download/docker-compose.yml
-#wget -O .env https://github.com/immich-app/immich/releases/latest/download/example.env
-
-sudo docker-compose up -d
-sudo certbot certonly --standalone -d immich.jimchen.me --email jimchen4214@gmail.com --non-interactive --agree-tos
-sudo ln -sf /etc/nginx/sites-available/immich.jimchen.me.conf /etc/nginx/sites-enabled/
-```
-
 ## [portainer](https://github.com/portainer/portainer)
 
 url: [portainer.jimchen.me](https://portainer.jimchen.me)
@@ -104,15 +71,6 @@ sudo certbot certonly --standalone -d portainer.jimchen.me --email jimchen4214@g
 sudo ln -sf /etc/nginx/sites-available/portainer.jimchen.me.conf /etc/nginx/sites-enabled/
 ```
 
-## [mongodb]
-
-```bash
-# add mongod.conf, dockercompose
-docker-compose up -d
-# expose port 27017
-# mongosh "mongodb://admin:[]@3.228.73.172:27017/" --authenticationDatabase admin
-# connecting admin only works when specifying admin ?authSource=admin
-```
 
 ## [alist](https://github.com/alist-org/alist)
 
@@ -137,16 +95,6 @@ sudo certbot certonly --standalone -d jimchen.me --email jimchen4214@gmail.com -
 sudo ln -sf /etc/nginx/sites-available/jimchen.me.conf /etc/nginx/sites-enabled/
 ```
 
-## [task-manager-nextjs](https://github.com/jimchen2/task-manager-nextjs)
-
-url: [task.jimchen.me](https://task.jimchen.me)
-
-```bash
-# configure .env
-docker run -d --restart always --env-file .env -p 3025:3000 jimchen2/task-manager-nextjs:latest
-sudo certbot certonly --standalone -d task.jimchen.me --email jimchen4214@gmail.com --non-interactive --agree-tos
-sudo ln -sf /etc/nginx/sites-available/task.jimchen.me.conf /etc/nginx/sites-enabled/
-```
 
 ## [markdown-parser](https://github.com/jimchen2/markdown-parser)
 
@@ -159,26 +107,16 @@ sudo certbot certonly --standalone -d markdown.jimchen.me --email jimchen4214@gm
 sudo ln -sf /etc/nginx/sites-available/markdown.jimchen.me.conf /etc/nginx/sites-enabled/
 ```
 
-## [nocodb](https://github.com/nocodb/nocodb)
 
-url: [nocodb.jimchen.me](https://nocodb.jimchen.me)
+## [task-manager-nextjs](https://github.com/jimchen2/task-manager-nextjs)
+
+url: [task.jimchen.me](https://task.jimchen.me)
 
 ```bash
-# configure docker-compose.yml
-docker-compose up -d
-sudo certbot certonly --standalone -d nocodb.jimchen.me --email jimchen4214@gmail.com --non-interactive --agree-tos
-sudo ln -sf /etc/nginx/sites-available/nocodb.jimchen.me.conf /etc/nginx/sites-enabled/
-```
-
-## [actual](https://github.com/actualbudget/actual)
-
-url: [actual.jimchen.me](https://actual.jimchen.me)
-
-```
-
-docker run --pull=always --restart=unless-stopped -d -p 3037:5006 -v /data:/data --name actual-server actualbudget/actual-server:latest
-sudo certbot certonly --standalone -d actual.jimchen.me --email jimchen4214@gmail.com --non-interactive --agree-tos
-sudo ln -sf /etc/nginx/sites-available/actual.jimchen.me.conf /etc/nginx/sites-enabled/
+# configure .env
+docker run -d --restart always --env-file .env -p 3025:3000 jimchen2/task-manager-nextjs:latest
+sudo certbot certonly --standalone -d task.jimchen.me --email jimchen4214@gmail.com --non-interactive --agree-tos
+sudo ln -sf /etc/nginx/sites-available/task.jimchen.me.conf /etc/nginx/sites-enabled/
 ```
 
 ## [nezha](https://github.com/naiba/nezha)
@@ -199,26 +137,13 @@ url: [pdf.jimchen.me](https://pdf.jimchen.me)
 ```bash
 docker run -d --restart always \
   -p 8033:8080 \
-  -v ./trainingData:/usr/share/tessdata \
-  -v ./extraConfigs:/configs \
   -v ./logs:/logs \
   -e DOCKER_ENABLE_SECURITY=false \
-  -e INSTALL_BOOK_AND_ADVANCED_HTML_OPS=false \
   -e LANGS=en_GB \
   --name stirling-pdf \
   frooodle/s-pdf:latest
 sudo certbot certonly --standalone -d pdf.jimchen.me --email jimchen4214@gmail.com --non-interactive --agree-tos
 sudo ln -sf /etc/nginx/sites-available/pdf.jimchen.me.conf /etc/nginx/sites-enabled/
-```
-
-## [rsshub](https://github.com/DIYgod/RSSHub)
-
-url: [rss.jimchen.me](https://rss.jimchen.me)
-
-```bash
-docker run -d --name rsshub -p 1200:1200 --restart always diygod/rsshub:chromium-bundled
-sudo certbot certonly --standalone -d rss.jimchen.me --email jimchen4214@gmail.com --non-interactive --agree-tos
-sudo ln -sf /etc/nginx/sites-available/rss.jimchen.me.conf /etc/nginx/sites-enabled/
 ```
 
 ## [freshrss](https://github.com/FreshRSS/FreshRSS)
@@ -296,13 +221,18 @@ url: [mastodon.jimchen.me](https://mastodon.jimchen.me)
 See folder for more
 
 
-
-
 ## [peertube](https://github.com/Chocobozzz/PeerTube/)
 
 url: [peertube.jimchen.me](https://peertube.jimchen.me)
 
 See folder for more
+
+
+## Database
+
+### [mongodb](https://github.com/mongodb/mongo)
+
+See mongo folder
 
 ## S3 Lambda Functions
 
