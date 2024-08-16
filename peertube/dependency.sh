@@ -6,7 +6,8 @@ sudo apt-get install -y nodejs
 sudo npm -g install yarn
 sudo apt install python3-dev python3-pip python-is-python3
 sudo apt install certbot nginx ffmpeg postgresql postgresql-contrib openssl g++ make git cron wget
-sudo systemctl enable --now redis-server postgresql
+sudo systemctl enable --now redis-server 
+# sudo systemctl enable --now postgresql
 
 
 
