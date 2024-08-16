@@ -113,6 +113,24 @@ Wrong Hostname
 
 Use `S3_ALIAS_HOST` instead of S3 hostname in `.env.production`
 
-## Postgres
 
-Change Postgres to a external database
+### Migration: 
+
+After modifying the Postgres host
+
+```
+
+To resolve this issue:
+
+- Did you create the database for this app, or delete it? You may need to create your database.
+- Has the database name changed? Check your database.yml config has the correct database name.
+
+
+2024-08-16T12:39:23.581Z pid=7 tid=5en WARN: ActiveRecord::NoDatabaseError: We could not find your database: mastodon. Which can be found in the database configuration file located at config/database.yml.
+```
+
+### Solution
+
+So basically like there is a permission issue. In PostgreSQL, being the owner of a database doesn't automatically grant you all permissions on that database when you're connecting as a non-root user. (This is really really confusing) 
+
+Please grant nonroot user all permissions and make sure psql logged in as nonroot user can see everything.
