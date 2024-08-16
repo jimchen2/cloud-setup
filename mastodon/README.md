@@ -112,3 +112,7 @@ Wrong Hostname
 ### Solution
 
 Use `S3_ALIAS_HOST` instead of S3 hostname in `.env.production`
+
+## Postgres
+
+Change Postgres to a external database
