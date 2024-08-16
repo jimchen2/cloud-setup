@@ -37,9 +37,6 @@ sudo systemctl enable --now docker
 
 ## `nginx` files are in `/etc/nginx/sites-available/`
 
-
-
-
 ## [lobe-chat](https://github.com/lobehub/lobe-chat)
 
 url: [lobe.jimchen.me](https://lobe.jimchen.me)
@@ -64,19 +61,18 @@ sudo ln -sf /etc/nginx/sites-available/chat.jimchen.me.conf /etc/nginx/sites-ena
 
 url: [portainer.jimchen.me](https://portainer.jimchen.me)
 
-```
+```sh
 sudo docker volume create portainer_data
 sudo docker run -d -p 3003:9000 --name portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce:latest
 sudo certbot certonly --standalone -d portainer.jimchen.me --email jimchen4214@gmail.com --non-interactive --agree-tos
 sudo ln -sf /etc/nginx/sites-available/portainer.jimchen.me.conf /etc/nginx/sites-enabled/
 ```
 
-
 ## [alist](https://github.com/alist-org/alist)
 
 url: [bucket.jimchen.me](https://bucket.jimchen.me)
 
-```
+```sh
 docker run -d --restart=always -v /etc/alist:/opt/alist/data -p 5244:5244 -e PUID=0 -e PGID=0 -e UMASK=022 --name="alist" xhofe/alist:latest
 docker exec -it alist ./alist admin set password
 sudo certbot certonly --standalone -d bucket.jimchen.me --email jimchen4214@gmail.com --non-interactive --agree-tos
@@ -95,7 +91,6 @@ sudo certbot certonly --standalone -d jimchen.me --email jimchen4214@gmail.com -
 sudo ln -sf /etc/nginx/sites-available/jimchen.me.conf /etc/nginx/sites-enabled/
 ```
 
-
 ## [markdown-parser](https://github.com/jimchen2/markdown-parser)
 
 url: [markdown.jimchen.me](https://markdown.jimchen.me)
@@ -106,7 +101,6 @@ docker run -d --restart always --env-file .env -p 3048:3000 jimchen2/markdown-pa
 sudo certbot certonly --standalone -d markdown.jimchen.me --email jimchen4214@gmail.com --non-interactive --agree-tos
 sudo ln -sf /etc/nginx/sites-available/markdown.jimchen.me.conf /etc/nginx/sites-enabled/
 ```
-
 
 ## [task-manager-nextjs](https://github.com/jimchen2/task-manager-nextjs)
 
@@ -202,7 +196,6 @@ sudo certbot certonly --standalone -d grafana.jimchen.me --email jimchen4214@gma
 sudo ln -sf /etc/nginx/sites-available/grafana.jimchen.me.conf /etc/nginx/sites-enabled/
 ```
 
-
 ## [metabase](https://github.com/metabase/metabase/)
 
 url: [metabase.jimchen.me](https://metabase.jimchen.me)
@@ -220,13 +213,11 @@ url: [mastodon.jimchen.me](https://mastodon.jimchen.me)
 
 See folder for more
 
-
 ## [peertube](https://github.com/Chocobozzz/PeerTube/)
 
 url: [peertube.jimchen.me](https://peertube.jimchen.me)
 
 See folder for more
-
 
 ## Database
 
