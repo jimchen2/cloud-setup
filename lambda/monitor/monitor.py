@@ -13,27 +13,21 @@ def lambda_handler(event, context):
     endpoints = [
         {"name": "Lobe Chat", "url": "https://lobe.jimchen.me"},
         {"name": "ChatGPT Next Web", "url": "https://chat.jimchen.me"},
-        {"name": "Vaultwarden", "url": "https://vault.jimchen.me"},
-        {"name": "Uptime Kuma", "url": "https://status.jimchen.me"},
-        {"name": "Immich", "url": "https://immich.jimchen.me"},
         {"name": "Portainer", "url": "https://portainer.jimchen.me"},
         {"name": "Alist", "url": "https://bucket.jimchen.me"},
         {"name": "Personal Website", "url": "https://jimchen.me"},
         {"name": "Task Manager", "url": "https://task.jimchen.me"},
         {"name": "Markdown Parser", "url": "https://markdown.jimchen.me"},
-        {"name": "NocoDB", "url": "https://nocodb.jimchen.me"},
-        {"name": "Actual", "url": "https://actual.jimchen.me"},
         {"name": "Nezha", "url": "https://nezha.jimchen.me"},
         {"name": "Stirling PDF", "url": "https://pdf.jimchen.me"},
-        {"name": "RSSHub", "url": "https://rss.jimchen.me"},
         {"name": "FreshRSS", "url": "https://feed.jimchen.me"},
         {"name": "Linktree", "url": "https://link.jimchen.me"},
         {"name": "Gitea", "url": "https://git.jimchen.me"},
         {"name": "Grafana", "url": "https://grafana.jimchen.me"},
-        {"name": "Metabase", "url": "https://metabase.jimchen.me"}
-    ]
-
-    
+        {"name": "Metabase", "url": "https://metabase.jimchen.me"},
+        {"name": "Mastodon", "url": "https://mastodon.jimchen.me"},
+        {"name": "PeerTube", "url": "https://peertube.jimchen.me"}
+    ]    
     http = urllib3.PoolManager()
     current_time = datetime.utcnow()
     

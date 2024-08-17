@@ -1,0 +1,12 @@
+version: '3'
+services:
+  dendrite:
+    image: matrixdotorg/dendrite-monolith:latest
+    ports:
+      - "8009:8008"
+    volumes:
+      - ./config:/etc/dendrite
+      - ./media:/var/dendrite/media
+    environment:
+        - DENDRITE_CONFIG=/etc/dendrite/dendrite.yaml
+    restart: always
