@@ -102,17 +102,6 @@ sudo certbot certonly --standalone -d markdown.jimchen.me --email jimchen4214@gm
 sudo ln -sf /etc/nginx/sites-available/markdown.jimchen.me.conf /etc/nginx/sites-enabled/
 ```
 
-## [task-manager-nextjs](https://github.com/jimchen2/task-manager-nextjs)
-
-url: [task.jimchen.me](https://task.jimchen.me)
-
-```bash
-# configure .env
-docker run -d --restart always --env-file .env -p 3025:3000 jimchen2/task-manager-nextjs:latest
-sudo certbot certonly --standalone -d task.jimchen.me --email jimchen4214@gmail.com --non-interactive --agree-tos
-sudo ln -sf /etc/nginx/sites-available/task.jimchen.me.conf /etc/nginx/sites-enabled/
-```
-
 ## [linktree](https://github.com/jimchen2/linktree)
 
 url: [link.jimchen.me](https://link.jimchen.me)
@@ -161,7 +150,6 @@ docker run -d --restart always --log-opt max-size=10m \
   -e TZ=Europe/Paris \
   -e 'CRON_MIN=1,31' \
   -v freshrss_data:/var/www/FreshRSS/data \
-  -v freshrss_extensions:/var/www/FreshRSS/extensions \
   --name freshrss \
   freshrss/freshrss
 sudo certbot certonly --standalone -d feed.jimchen.me --email jimchen4214@gmail.com --non-interactive --agree-tos
