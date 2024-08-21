@@ -37,6 +37,19 @@ sudo systemctl enable --now docker
 
 ## `nginx` files are in `/etc/nginx/sites-available/`
 
+## [vercel-bedrock](https://github.com/jimchen2/vercel-bedrock)
+
+url: [llm.jimchen.me](https://llm.jimchen.me)
+
+First configure `.env` like `.env.example`
+
+```
+docker run -d --restart always --env-file .env -p 3210:3000 jimchen2/vercel-bedrock:latest
+sudo certbot certonly --standalone -d llm.jimchen.me --email jimchen4214@gmail.com --non-interactive --agree-tos
+sudo ln -sf /etc/nginx/sites-available/llm.jimchen.me.conf /etc/nginx/sites-enabled/
+```
+
+
 ## [chatgpt-next-web](https://github.com/ChatGPTNextWeb/ChatGPT-Next-Web)
 
 url: [chat.jimchen.me](https://chat.jimchen.me)
