@@ -60,3 +60,13 @@ docker run --pull=always --restart=unless-stopped -d -p 3037:5006 -v /data:/data
 sudo certbot certonly --standalone -d actual.jimchen.me --email jimchen4214@gmail.com --non-interactive --agree-tos
 sudo ln -sf /etc/nginx/sites-available/actual.jimchen.me.conf /etc/nginx/sites-enabled/
 ```
+
+## [lobe-chat](https://github.com/lobehub/lobe-chat)
+
+url: [lobe.jimchen.me](https://lobe.jimchen.me)
+
+```
+sudo docker run -d -p 3210:3210 --env-file .env --restart always --name lobe-chat lobehub/lobe-chat
+sudo certbot certonly --standalone -d lobe.jimchen.me --email jimchen4214@gmail.com --non-interactive --agree-tos
+sudo ln -sf /etc/nginx/sites-available/chat.jimchen.me.conf /etc/nginx/sites-enabled/
+```

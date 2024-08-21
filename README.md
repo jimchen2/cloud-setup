@@ -37,20 +37,18 @@ sudo systemctl enable --now docker
 
 ## `nginx` files are in `/etc/nginx/sites-available/`
 
-## [lobe-chat](https://github.com/lobehub/lobe-chat)
-
-url: [lobe.jimchen.me](https://lobe.jimchen.me)
-
-```
-sudo docker run -d -p 3210:3210 --env-file .env --restart always --name lobe-chat lobehub/lobe-chat
-sudo certbot certonly --standalone -d lobe.jimchen.me --email jimchen4214@gmail.com --non-interactive --agree-tos
-sudo ln -sf /etc/nginx/sites-available/chat.jimchen.me.conf /etc/nginx/sites-enabled/
-```
-
 ## [chatgpt-next-web](https://github.com/ChatGPTNextWeb/ChatGPT-Next-Web)
 
 url: [chat.jimchen.me](https://chat.jimchen.me)
 
+env:
+```
+OPENAI_API_KEY=
+GOOGLE_API_KEY=
+
+CODE=
+```
+Then
 ```
 sudo docker run -d -p 3000:3000 --env-file .env --restart always yidadaa/chatgpt-next-web
 sudo certbot certonly --standalone -d chat.jimchen.me --email jimchen4214@gmail.com --non-interactive --agree-tos
