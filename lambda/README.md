@@ -4,3 +4,9 @@
 ## Add Git Layer `arn:aws:lambda:us-east-1:553035198032:layer:git-lambda2:8`
 ## Configure Env Vars and Increase Time to Run
 ## Then Configure the CloudEvent to Run it Periodically
+
+
+
+- GithubToS3Weekly
+- Monitor: Every 30 minutes check website status
+- MongoToS3: Every 30 minutes backup MongoDB

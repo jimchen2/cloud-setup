@@ -1,46 +1,33 @@
-## Postgres is the Database for many Apps
-
-```sh
-docker run -d \
-  --name postgres-container \
-  -p 5432:5432 \
-  -v postgres-data:/var/lib/postgresql/data \
-  --restart always \
-  postgres:latest
 ```
+postgres-# \l
+                                                           List of databases
+        Name         |  Owner   | Encoding | Locale Provider |  Collate   |   Ctype    | ICU Locale | ICU Rules |   Access privileges   
+---------------------+----------+----------+-----------------+------------+------------+------------+-----------+-----------------------
+ freshrss_production | postgres | UTF8     | libc            | en_US.utf8 | en_US.utf8 |            |           | =Tc/postgres         +
+                     |          |          |                 |            |            |            |           | postgres=CTc/postgres+
+                     |          |          |                 |            |            |            |           | freshrss=CTc/postgres
+ gitea_production    | gitea    | UTF8     | libc            | en_US.utf8 | en_US.utf8 |            |           | 
+ mastodon_production | mastodon | UTF8     | libc            | en_US.utf8 | en_US.utf8 |            |           | 
+ matrix_production   | matrix   | UTF8     | libc            | en_US.utf8 | en_US.utf8 |            |           | =Tc/matrix           +
+                     |          |          |                 |            |            |            |           | matrix=CTc/matrix
+ metabase_production | metabase | UTF8     | libc            | en_US.utf8 | en_US.utf8 |            |           | 
+ peertube_production | peertube | UTF8     | libc            | en_US.utf8 | en_US.utf8 |            |           | 
+ postgres            | postgres | UTF8     | libc            | en_US.utf8 | en_US.utf8 |            |           | 
+ template0           | postgres | UTF8     | libc            | en_US.utf8 | en_US.utf8 |            |           | =c/postgres          +
+                     |          |          |                 |            |            |            |           | postgres=CTc/postgres
+ template1           | postgres | UTF8     | libc            | en_US.utf8 | en_US.utf8 |            |           | =c/postgres          +
+                     |          |          |                 |            |            |            |           | postgres=CTc/postgres
+(9 rows)
 
-## Expose it to all ip(not a good idea, but since I am exposing MongoDB also, let's go with it)
-
-```sh
-docker exec -it postgres-container bash
-sed -i "s/#listen_addresses = 'localhost'/listen_addresses = '*'/" /var/lib/postgresql/data/postgresql.conf
-echo "host all all 0.0.0.0/0 md5" >> /var/lib/postgresql/data/pg_hba.conf
-
-su - postgres
-psql
-ALTER USER postgres WITH PASSWORD 'your_new_password';
-
-exit
-
-docker restart postgres-container
-```
-
-## Migration
-
-```
-IP_ADDRESS=""
-
-docker exec mastodon-db-1 pg_dump -U postgres -O postgres > output_file.sql
-
-
-
-psql "postgresql://postgres@$IP_ADDRESS:5432/postgres" -c "CREATE USER mastodon"
-psql "postgresql://postgres@$IP_ADDRESS:5432/postgres"
-ALTER USER mastodon CREATEDB;
-exit
-psql "postgresql://mastodon@$IP_ADDRESS:5432/postgres" -U mastodon -c "CREATE DATABASE mastodon_production"
-psql "postgresql://postgres@$IP_ADDRESS:5432/postgres"
-ALTER USER mastodon NOCREATEDB;
-exit
-psql "postgresql://mastodon@$IP_ADDRESS:5432/mastodon_production" < output_file.sql
-```
+postgres-# \du
+                             List of roles
+ Role name |                         Attributes                         
+-----------+------------------------------------------------------------
+ freshrss  | 
+ gitea     | 
+ mastodon  | 
+ matrix    | Create DB
+ metabase  | 
+ peertube  | 
+ postgres  | Superuser, Create role, Create DB, Replication, Bypass RLS
+ ```
