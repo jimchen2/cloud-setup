@@ -208,18 +208,6 @@ docker run -d \
 sudo certbot certonly --standalone -d grafana.jimchen.me --email jimchen4214@gmail.com --non-interactive --agree-tos
 sudo ln -sf /etc/nginx/sites-available/grafana.jimchen.me.conf /etc/nginx/sites-enabled/
 ```
-
-## [metabase](https://github.com/metabase/metabase/)
-
-url: [metabase.jimchen.me](https://metabase.jimchen.me)
-
-```bash
-# configure docker-compose
-docker-compose up -d
-sudo certbot certonly --standalone -d metabase.jimchen.me --email jimchen4214@gmail.com --non-interactive --agree-tos
-sudo ln -sf /etc/nginx/sites-available/metabase.jimchen.me.conf /etc/nginx/sites-enabled/
-```
-
 ## Fediverse
 
 ### [mastodon](https://github.com/mastodon/mastodon/)

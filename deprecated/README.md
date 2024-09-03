@@ -1,4 +1,20 @@
 
+## [metabase](https://github.com/metabase/metabase/)
+
+Metabase uses too much ram
+
+url: [metabase.jimchen.me](https://metabase.jimchen.me)
+
+```bash
+# configure docker-compose
+# limit its memory usage
+docker-compose up -d
+sudo certbot certonly --standalone -d metabase.jimchen.me --email jimchen4214@gmail.com --non-interactive --agree-tos
+sudo ln -sf /etc/nginx/sites-available/metabase.jimchen.me.conf /etc/nginx/sites-enabled/
+```
+
+
+
 ## [vaultwarden](https://github.com/dani-garcia/vaultwarden)
 
 
