@@ -45,3 +45,25 @@ exit
 psql "postgresql://mastodon@$IP_ADDRESS:5432/mastodon_production" < output_file.sql
 ```
 
+## Create and Grant
+
+```sh
+postgres=# CREATE USER miniflux WITH PASSWORD '';
+CREATE ROLE
+postgres=# CREATE DATABASE miniflux;
+CREATE DATABASE
+postgres=# ALTER DATABASE miniflux OWNER TO miniflux;
+ALTER DATABASE
+postgres=# GRANT ALL PRIVILEGES ON DATABASE miniflux TO miniflux;
+GRANT
+postgres=# \c miniflux
+psql (16.3, server 16.4 (Debian 16.4-1.pgdg120+1))
+You are now connected to database "miniflux" as user "postgres".
+miniflux=# GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO miniflux;
+GRANT ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA public TO miniflux;
+GRANT ALL PRIVILEGES ON ALL FUNCTIONS IN SCHEMA public TO miniflux;
+GRANT
+GRANT
+GRANT
+miniflux=# 
+```

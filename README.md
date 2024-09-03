@@ -161,18 +161,20 @@ sudo certbot certonly --standalone -d pdf.jimchen.me --email jimchen4214@gmail.c
 sudo ln -sf /etc/nginx/sites-available/pdf.jimchen.me.conf /etc/nginx/sites-enabled/
 ```
 
-## [freshrss](https://github.com/FreshRSS/FreshRSS)
+## [miniflux](https://github.com/miniflux/v2)
 
 url: [feed.jimchen.me](https://feed.jimchen.me)
 
 ```
-docker run -d --restart always --log-opt max-size=10m \
-  -p 8092:80 \
-  -e TZ=Europe/Paris \
-  -e 'CRON_MIN=1,31' \
-  -v freshrss_data:/var/www/FreshRSS/data \
-  --name freshrss \
-  freshrss/freshrss
+docker run -d \
+  -p 8092:8080 \
+  --name miniflux \
+  -e DATABASE_URL="postgresql://miniflux:@:5432/miniflux?sslmode=disable" \
+  -e RUN_MIGRATIONS=1 \
+  -e CREATE_ADMIN=1 \
+  -e ADMIN_USERNAME=admin \
+  -e ADMIN_PASSWORD= \
+  docker.io/miniflux/miniflux:latest
 sudo certbot certonly --standalone -d feed.jimchen.me --email jimchen4214@gmail.com --non-interactive --agree-tos
 sudo ln -sf /etc/nginx/sites-available/feed.jimchen.me.conf /etc/nginx/sites-enabled/
 ```
