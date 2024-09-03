@@ -167,6 +167,7 @@ url: [feed.jimchen.me](https://feed.jimchen.me)
 
 ```
 docker run -d \
+  --restart always \
   -p 8092:8080 \
   --name miniflux \
   -e DATABASE_URL="postgresql://miniflux:@:5432/miniflux?sslmode=disable" \
