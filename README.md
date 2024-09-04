@@ -35,6 +35,16 @@ sudo apt-get install docker-ce
 sudo systemctl enable --now docker
 ```
 
+## Swappiness
+
+```
+sudo vim /etc/sysctl.conf
+```
+add
+```
+vm.swappiness = 10
+```
+
 ## `nginx` files are in `/etc/nginx/sites-available/`
 
 ## [vercel-bedrock](https://github.com/jimchen2/vercel-bedrock)
