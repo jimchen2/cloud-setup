@@ -11,3 +11,20 @@ user@fedora ~> rclone lsd s3:
           -1 2024-07-19 14:41:20        -1 jimchen4214-status
           -1 2024-08-04 05:49:58        -1 jimchen4214-tube
 ```
+
+## I don't need glacier storage on AWS because I have too few total storage size
+
+## Change storage class
+
+```
+aws s3 cp s3://jimchen4214-photo s3://jimchen4214-photo --recursive --storage-class STANDARD_IA
+```
+
+
+
+## Restore Glacier Objects
+
+1. Get objects and classes in json from a bucket
+2. Start restoring job for each Glacier Object
+3. Restore like normal objects
+

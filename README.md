@@ -40,7 +40,9 @@ sudo systemctl enable --now docker
 ```
 sudo vim /etc/sysctl.conf
 ```
+
 add
+
 ```
 vm.swappiness = 10
 ```
@@ -59,19 +61,21 @@ sudo certbot certonly --standalone -d llm.jimchen.me --email jimchen4214@gmail.c
 sudo ln -sf /etc/nginx/sites-available/llm.jimchen.me.conf /etc/nginx/sites-enabled/
 ```
 
-
 ## [chatgpt-next-web](https://github.com/ChatGPTNextWeb/ChatGPT-Next-Web)
 
 url: [chat.jimchen.me](https://chat.jimchen.me)
 
 env:
+
 ```
 OPENAI_API_KEY=
 GOOGLE_API_KEY=
 
 CODE=
 ```
+
 Then
+
 ```
 sudo docker run -d -p 3000:3000 --env-file .env --restart always yidadaa/chatgpt-next-web
 sudo certbot certonly --standalone -d chat.jimchen.me --email jimchen4214@gmail.com --non-interactive --agree-tos
@@ -190,16 +194,6 @@ sudo certbot certonly --standalone -d feed.jimchen.me --email jimchen4214@gmail.
 sudo ln -sf /etc/nginx/sites-available/feed.jimchen.me.conf /etc/nginx/sites-enabled/
 ```
 
-## [gitea](https://github.com/go-gitea/gitea)
-
-url: [git.jimchen.me](https://git.jimchen.me)
-
-```bash
-sudo docker-compose up -d
-sudo certbot certonly --standalone -d git.jimchen.me --email jimchen4214@gmail.com --non-interactive --agree-tos
-sudo ln -sf /etc/nginx/sites-available/git.jimchen.me.conf /etc/nginx/sites-enabled/
-```
-
 ## [grafana](https://github.com/grafana/grafana/)
 
 url: [grafana.jimchen.me](https://grafana.jimchen.me)
@@ -218,48 +212,3 @@ docker run -d \
 sudo certbot certonly --standalone -d grafana.jimchen.me --email jimchen4214@gmail.com --non-interactive --agree-tos
 sudo ln -sf /etc/nginx/sites-available/grafana.jimchen.me.conf /etc/nginx/sites-enabled/
 ```
-## Fediverse
-
-### [mastodon](https://github.com/mastodon/mastodon/)
-
-url: [mastodon.jimchen.me](https://mastodon.jimchen.me)
-
-See folder for more
-
-### [peertube](https://github.com/Chocobozzz/PeerTube/)
-
-url: [peertube.jimchen.me](https://peertube.jimchen.me)
-
-See folder for more
-
-### [matrix-dendrite](https://github.com/matrix-org/dendrite)
-
-url: [matrix.jimchen.me](https://matrix.jimchen.me)
-
-See folder for more
-
-## Database
-
-### [mongodb](https://github.com/mongodb/mongo)
-
-See mongo folder
-
-### [postgres](https://github.com/postgres/postgres)
-
-See postgres folder for more
-
-## S3 Lambda Functions
-
-1. Monitor, ping websites to see if its up
-2. Backup MongoDB to S3 every 30 minutes
-3. Backup Github to S3 every week
-
-## Restore Glacier Objects
-
-1. Get objects and classes in json from a bucket
-2. Start restoring job for each Glacier Object
-3. Restore like normal objects
-
-## Email Server
-
-See mail-lambda for setting up
