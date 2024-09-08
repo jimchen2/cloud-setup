@@ -212,3 +212,22 @@ docker run -d \
 sudo certbot certonly --standalone -d grafana.jimchen.me --email jimchen4214@gmail.com --non-interactive --agree-tos
 sudo ln -sf /etc/nginx/sites-available/grafana.jimchen.me.conf /etc/nginx/sites-enabled/
 ```
+
+## [roundcube](https://roundcube.net/)
+
+url: [m.jimchen.me](https://m.jimchen.me)
+
+Enter the IMAP username and password to login
+
+Use ssl
+
+```
+docker run -d \
+  -e ROUNDCUBEMAIL_DEFAULT_HOST=ssl://imap.mail.us-east-1.awsapps.com \
+  -e ROUNDCUBEMAIL_DEFAULT_PORT=993 \
+  -e ROUNDCUBEMAIL_SMTP_SERVER=ssl://smtp.mail.us-east-1.awsapps.com \
+  -e ROUNDCUBEMAIL_SMTP_PORT=465 \
+  -p 2948:80 \
+  --name roundcube \
+  roundcube/roundcubemail
+```

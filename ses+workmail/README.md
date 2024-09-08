@@ -6,24 +6,23 @@ Then configure Workmail, Create Organization, Update records in Route 53 again t
 
 **AWS will create a default email receiving rule for you if you create a workmail(THIS IS VERY CONFUSING)**
 
-Then add the backup to s3 in the rule.
+Then add the "backup to s3" in the rule.
+
+**The inbound and Outbound server gets automatically integrated in the workmail to SES**
 
 ### Inbound (IMAP)
 
 - Server: imap.mail.us-east-1.awsapps.com
 - Port: 993
-- Security: SSL
+- Security: SSL/TLS
 - Username: Full email (IMAP email)
 - Password: WorkMail password
 
 ### Outbound (SMTP)
 
-- Server: email-smtp.us-east-1.amazonaws.com
+- Server: smtp.mail.us-east-1.awsapps.com
 - Port: 465
-- Security: TLS
-- Username: IMAP user access key
-- Password: IMAP user secret key
-
+- Security: SSL/TLS
 
 
 ## Previous Errors
