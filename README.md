@@ -223,6 +223,7 @@ Use ssl
 
 ```
 docker run -d \
+  --restart always\
   -e ROUNDCUBEMAIL_DEFAULT_HOST=ssl://imap.mail.us-east-1.awsapps.com \
   -e ROUNDCUBEMAIL_DEFAULT_PORT=993 \
   -e ROUNDCUBEMAIL_SMTP_SERVER=ssl://smtp.mail.us-east-1.awsapps.com \
