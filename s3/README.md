@@ -8,23 +8,22 @@ user@fedora ~> rclone lsd s3:
           -1 2024-07-17 12:24:32        -1 jimchen4214-mongo
           -1 2024-07-19 03:50:24        -1 jimchen4214-photo
           -1 2024-05-29 17:07:49        -1 jimchen4214-public
-          -1 2024-07-19 14:41:20        -1 jimchen4214-status
           -1 2024-08-04 05:49:58        -1 jimchen4214-tube
 ```
 
-## I don't need glacier storage on AWS because I have too few total storage size
+## Each Bucket's Purpose
 
-## Change storage class
+## Public Buckets
 
-```
-aws s3 cp s3://jimchen4214-photo s3://jimchen4214-photo --recursive --storage-class STANDARD_IA
-```
+- **jimchen4214-blog**: Personal Blog photo and media storage, no delete.
+- **jimchen4214-public**: Quick file sharing, not for consistent or important storage.
+- **jimchen4214-mastodon**: Mastodon storage.
+- **jimchen4214-tube**: Peertube Storage.
 
+## Private Buckets
 
-
-## Restore Glacier Objects
-
-1. Get objects and classes in json from a bucket
-2. Start restoring job for each Glacier Object
-3. Restore like normal objects
-
+- **jimchen4214-archive**: Archive for any files, no delete.
+- **jimchen4214-git**: Github backup every week, see Lambda function.
+- **jimchen4214-mail**: Mail Storage, from receiving in SES.
+- **jimchen4214-mongo**: MongoDB database backup of Blogs, every 30 minutes, see Lambda function.
+- **jimchen4214-photo**: Photo backup from Android by FolderSync.
