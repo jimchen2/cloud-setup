@@ -5,6 +5,35 @@
 ## Configure Env Vars and Increase Time to Run
 ## Then Configure the CloudEvent to Run it Periodically
 
+## Extracted Lambda is like this(after extraction)
+
+```
+user@ubuntu ~/D/python> ls
+bin
+bson
+certifi
+certifi-2024.7.4.dist-info
+cffi
+cffi-1.16.0.dist-info
+_cffi_backend.cpython-311-x86_64-linux-gnu.so
+charset_normalizer
+charset_normalizer-3.3.2.dist-info
+cryptography
+cryptography-42.0.8.dist-info
+deprecated
+Deprecated-1.2.14.dist-info
+dns
+dnspython-2.6.1.dist-info
+github
+gridfs
+idna
+idna-3.7.dist-info
+jwt
+nacl
+__pycache__
+pycparser
+```
+
 
 
 - GithubToS3Weekly

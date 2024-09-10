@@ -7,7 +7,6 @@ user@fedora ~> rclone lsd s3:
           -1 2024-08-03 04:44:01        -1 jimchen4214-mastodon
           -1 2024-07-17 12:24:32        -1 jimchen4214-mongo
           -1 2024-07-19 03:50:24        -1 jimchen4214-photo
-          -1 2024-05-29 17:07:49        -1 jimchen4214-public
           -1 2024-08-04 05:49:58        -1 jimchen4214-tube
 ```
 
@@ -16,7 +15,6 @@ user@fedora ~> rclone lsd s3:
 ## Public Buckets
 
 - **jimchen4214-blog**: Personal Blog photo and media storage, no delete.
-- **jimchen4214-public**: Quick file sharing, not for consistent or important storage.
 - **jimchen4214-mastodon**: Mastodon storage.
 - **jimchen4214-tube**: Peertube Storage.
 
