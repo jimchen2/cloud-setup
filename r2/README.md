@@ -1,5 +1,7 @@
 R2: Media hoarding and backup of S3.
 
+The backup should also occur Next February.
+
 
 ```
 user@fedora ~> rclone lsd r2:
@@ -10,7 +12,6 @@ user@fedora ~> rclone lsd r2:
           -1 2024-08-15 07:03:47        -1 jimchen4214-mastodon
           -1 2024-08-15 06:51:48        -1 jimchen4214-mongo
           -1 2024-08-15 06:51:56        -1 jimchen4214-photo
-          -1 2024-08-18 03:12:43        -1 jimchen4214-public
-          -1 2024-08-15 06:45:44        -1 jimchen4214-status
+          -1 2024-09-05 02:40:34        -1 jimchen4214-public
           -1 2024-08-15 07:03:45        -1 jimchen4214-tube
 ```
