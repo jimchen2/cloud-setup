@@ -1,6 +1,8 @@
 R2: Media hoarding and backup of S3.
 
-The backup should also occur Next February.
+Specifically, the public bucket is for media hoarding, other buckets are all backups of S3.
+
+Because of the egregious and nefarious outbound egress fees of AWS, backups should occur less frequently. The backup should occur Next February.
 
 
 ```
