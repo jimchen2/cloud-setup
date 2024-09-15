@@ -4,6 +4,21 @@
 
 [https://grafana.jimchen.me/public-dashboards/b6c9b0826c0b4af6b7bd4324618c5b95](https://grafana.jimchen.me/public-dashboards/b6c9b0826c0b4af6b7bd4324618c5b95)
 
+## All Services
+
+AWS
+
+- Bedrock
+- EC2
+- S3
+- WorkMail
+- Route 53
+- Secrets Manager
+
+Cloudflare
+
+- R2
+
 ### Cleaning Up
 
 ```
