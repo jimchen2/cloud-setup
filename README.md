@@ -131,17 +131,6 @@ sudo certbot certonly --standalone -d jimchen.me --email jimchen4214@gmail.com -
 sudo ln -sf /etc/nginx/sites-available/jimchen.me.conf /etc/nginx/sites-enabled/
 ```
 
-## [task-manager-nextjs](https://github.com/jimchen2/task-manager-nextjs)
-
-url: [task.jimchen.me](https://task.jimchen.me)
-
-```bash
-# configure .env
-docker run -d --restart always --env-file .env -p 3025:3000 jimchen2/task-manager-nextjs:latest
-sudo certbot certonly --standalone -d task.jimchen.me --email jimchen4214@gmail.com --non-interactive --agree-tos
-sudo ln -sf /etc/nginx/sites-available/task.jimchen.me.conf /etc/nginx/sites-enabled/
-```
-
 ## [markdown-parser](https://github.com/jimchen2/markdown-parser)
 
 url: [markdown.jimchen.me](https://markdown.jimchen.me)
