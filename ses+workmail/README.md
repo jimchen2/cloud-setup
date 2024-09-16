@@ -2,29 +2,20 @@ The previous setup was too confusing, too complex, and caused frequent errors, s
 
 SMTP server is the same. Basically update all the records in Route 53.
 
-Then configure Workmail, Create Organization, Update records in Route 53 again too.
-
-**AWS will create a default email receiving rule for you if you create a workmail(THIS IS VERY CONFUSING)**
+In the "email receiving"
 
 Then add the "backup to s3" in the rule.
 
-**The inbound and Outbound server gets automatically integrated in the workmail to SES**
-
-### Inbound (IMAP)
-
-- Server: imap.mail.us-east-1.awsapps.com
-- Port: 993
-- Security: SSL/TLS
-- Username: Full email (IMAP email)
-- Password: WorkMail password
-
 ### Outbound (SMTP)
 
-- Server: smtp.mail.us-east-1.awsapps.com
+- Server: email-smtp.us-east-1.amazonaws.com
 - Port: 465
 - Security: SSL/TLS
 
+SES damn doesn't allow email forwarding, so we use workmail
 
-## Previous Errors
+We integrate workmail with SES
 
-![alt text](image.png)
+It integrates automatically.
+
+After we integrate with workmail basically what we do is set up email forwarding. Thank you! Then we can use Gmail webmail and Gmail mobile client.
