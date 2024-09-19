@@ -33,7 +33,7 @@ def lambda_handler(event, context):
     repos = response.json()
 
     for repo in repos:
-        if repo['size'] < 300000 and datetime.strptime(repo['pushed_at'], '%Y-%m-%dT%H:%M:%SZ') > last_week:
+        if datetime.strptime(repo['pushed_at'], '%Y-%m-%dT%H:%M:%SZ') > last_week:
             clone_url = repo['clone_url'].replace('https://', f'https://{TOKEN}@')
             subprocess.run(['git', 'clone', '--depth', '1', clone_url, repo['name']], check=True)
 

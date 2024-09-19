@@ -1,4 +1,42 @@
 
+## [roundcube](https://roundcube.net/)
+
+url: [m.jimchen.me](https://m.jimchen.me)
+
+Enter the IMAP username and password to login
+
+Use ssl
+
+```
+docker run -d \
+  --restart always\
+  -e ROUNDCUBEMAIL_DEFAULT_HOST=ssl://imap.mail.us-east-1.awsapps.com \
+  -e ROUNDCUBEMAIL_DEFAULT_PORT=993 \
+  -e ROUNDCUBEMAIL_SMTP_SERVER=ssl://smtp.mail.us-east-1.awsapps.com \
+  -e ROUNDCUBEMAIL_SMTP_PORT=465 \
+  -p 2948:80 \
+  --name roundcube \
+  roundcube/roundcubemail
+```
+
+
+## [stirling-pdf](https://github.com/Stirling-Tools/Stirling-PDF)
+
+url: [pdf.jimchen.me](https://pdf.jimchen.me)
+
+```bash
+docker run -d --restart always \
+  -p 8033:8080 \
+  -v ./logs:/logs \
+  -e DOCKER_ENABLE_SECURITY=false \
+  -e LANGS=en_GB \
+  --name stirling-pdf \
+  frooodle/s-pdf:latest
+sudo certbot certonly --standalone -d pdf.jimchen.me --email jimchen4214@gmail.com --non-interactive --agree-tos
+sudo ln -sf /etc/nginx/sites-available/pdf.jimchen.me.conf /etc/nginx/sites-enabled/
+```
+
+
 ## [metabase](https://github.com/metabase/metabase/)
 
 Metabase uses too much ram

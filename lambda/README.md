@@ -2,6 +2,7 @@
 ## Make Sure the python local and Lambda versions match
 ## Change Function Policies to Write to S3
 ## Add Git Layer `arn:aws:lambda:us-east-1:553035198032:layer:git-lambda2:8`
+## Add Request Layer `arn:aws:lambda:us-east-1:471112910977:layer:pymongo-requests-github:3`
 ## Configure Env Vars and Increase Time to Run
 ## Then Configure the CloudEvent to Run it Periodically
 
