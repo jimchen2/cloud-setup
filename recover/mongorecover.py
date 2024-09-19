@@ -1,7 +1,9 @@
 from pymongo import MongoClient
 import json
+from bson import json_util  # Import BSON utilities for proper MongoDB JSON handling
 
 # MongoDB connection
+mongo_uri = ""
 client = MongoClient(mongo_uri)
 
 # Path to your backup file
@@ -18,8 +20,8 @@ with open(backup_file, 'r') as f:
             current_db = parts[0].split(": ")[1]
             current_collection = parts[1].split(": ")[1]
         else:
-            # Insert the JSON data into the collection
-            data = json.loads(line)
+            # Use json_util to handle MongoDB's extended JSON format
+            data = json_util.loads(line)
             
             # If the data is a list of documents
             if isinstance(data, list):
