@@ -1,3 +1,13 @@
+## Add this for safety concerns
+
+```
+
+AUTHORIZED_FETCH=true
+LIMITED_FEDERATION_MODE=true
+DISALLOW_UNAUTHENTICATED_API_ACCESS=true
+SINGLE_USER_MODE=true
+```
+
 ```bash
 docker-compose run --rm web bundle exec rails mastodon:setup
 ```
