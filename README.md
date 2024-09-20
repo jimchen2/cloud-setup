@@ -12,6 +12,8 @@ Cloudflare
 - R2
 - DNS
 
+## PLEASE USE INTERNAL PRIVATE IP FOR DATABASE TO AVOID FEES
+
 ## Install latest docker and docker compose
 
 ### Cleaning Up
