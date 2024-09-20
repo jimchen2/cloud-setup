@@ -14,7 +14,7 @@ Cloudflare
 
 ## PLEASE USE INTERNAL PRIVATE IP FOR DATABASE TO AVOID FEES
 
-Ports: 443(https), 80(http), 22(ssh), 5432(mongo), 27017(psql), 5555(nezha monitoring)
+Ports: 443(https), 80(http), 22(ssh), 5432(psql), 27017(mongo), 5555(nezha monitoring)
 
 ## Install latest docker and docker compose
 
