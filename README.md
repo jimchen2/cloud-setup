@@ -4,8 +4,6 @@ AWS
 
 - Bedrock
 - EC2
-- S3
-- Lambda
 
 Cloudflare
 
