@@ -10,10 +10,9 @@ Cloudflare
 - R2
 - DNS
 
-## PLEASE USE INTERNAL PRIVATE IP FOR DATABASE TO AVOID FEES
+## PLEASE USE INTERNAL PRIVATE IP FOR DATABASE TO AVOID PUBLIC IP FEES
 
 Ports: 443(https), 80(http), 22(ssh), 5432(psql), 27017(mongo), 5555(nezha monitoring)
-
 
 ### Cleaning Up
 
@@ -21,34 +20,38 @@ Ports: 443(https), 80(http), 22(ssh), 5432(psql), 27017(mongo), 5555(nezha monit
 docker system prune -af --volumes
 ```
 
-## `nginx` files are in `/etc/nginx/sites-available/`
+## Nginx
 
-```sh
-sudo certbot certonly --standalone -d jimchen.me --email jimchen4214@gmail.com --non-interactive --agree-tos
+`nginx` files are in `/etc/nginx/sites-available/`
+
+```
 sudo ln -sf /etc/nginx/sites-available/jimchen.me.conf /etc/nginx/sites-enabled/
+```
+
+## Cert and Private Key
+
+I use Cloudflare certs and place them in
+
+```
+ssl_certificate /etc/cloudflare/jimchen.me/cert.pem;
+ssl_certificate_key /etc/cloudflare/jimchen.me/privatekey.pem;
 ```
 
 ## [vercel-bedrock](https://github.com/jimchen2/vercel-bedrock)
 
 url: [llm.jimchen.me](https://llm.jimchen.me)
 
-
 ## [jimchen.me](https://github.com/jimchen2/My-Website-New)
 
 url: [jimchen.me](https://jimchen.me)
-
 
 ## [markdown-parser](https://github.com/jimchen2/markdown-parser)
 
 url: [markdown.jimchen.me](https://markdown.jimchen.me)
 
-
-
 ## [linktree](https://github.com/jimchen2/linktree)
 
 url: [link.jimchen.me](https://link.jimchen.me)
-
-
 
 ## [chatgpt-next-web](https://github.com/ChatGPTNextWeb/ChatGPT-Next-Web)
 
@@ -86,7 +89,6 @@ url: [bucket.jimchen.me](https://bucket.jimchen.me)
 docker run -d --restart=always -v /etc/alist:/opt/alist/data -p 5244:5244 -e PUID=0 -e PGID=0 -e UMASK=022 --name="alist" xhofe/alist:latest
 docker exec -it alist ./alist admin set password
 ```
-
 
 ## [nezha](https://github.com/naiba/nezha)
 
