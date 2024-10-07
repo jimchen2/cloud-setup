@@ -45,14 +45,6 @@ url: [llm.jimchen.me](https://llm.jimchen.me)
 
 url: [jimchen.me](https://jimchen.me)
 
-## [portainer](https://github.com/portainer/portainer)
-
-url: [portainer.jimchen.me](https://portainer.jimchen.me)
-
-```sh
-sudo docker volume create portainer_data
-sudo docker run -d -p 3003:9000 --name portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce:latest
-```
 
 ## [alist](https://github.com/alist-org/alist)
 

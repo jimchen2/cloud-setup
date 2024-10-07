@@ -205,3 +205,13 @@ Then
 ```
 sudo docker run -d -p 3000:3000 --env-file .env --restart always yidadaa/chatgpt-next-web
 ```
+
+
+## [portainer](https://github.com/portainer/portainer)
+
+url: [portainer.jimchen.me](https://portainer.jimchen.me)
+
+```sh
+sudo docker volume create portainer_data
+sudo docker run -d -p 3003:9000 --name portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce:latest
+```
