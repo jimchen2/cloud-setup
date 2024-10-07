@@ -45,14 +45,6 @@ url: [llm.jimchen.me](https://llm.jimchen.me)
 
 url: [jimchen.me](https://jimchen.me)
 
-## [markdown-parser](https://github.com/jimchen2/markdown-parser)
-
-url: [markdown.jimchen.me](https://markdown.jimchen.me)
-
-## [linktree](https://github.com/jimchen2/linktree)
-
-url: [link.jimchen.me](https://link.jimchen.me)
-
 ## [chatgpt-next-web](https://github.com/ChatGPTNextWeb/ChatGPT-Next-Web)
 
 url: [chat.jimchen.me](https://chat.jimchen.me)

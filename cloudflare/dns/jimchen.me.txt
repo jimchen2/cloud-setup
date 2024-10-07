@@ -1,0 +1,50 @@
+;;
+;; Domain:     jimchen.me.
+;; Exported:   2024-09-21 05:08:22
+;;
+;; This file is intended for use for informational and archival
+;; purposes ONLY and MUST be edited before use on a production
+;; DNS server.  In particular, you must:
+;;   -- update the SOA record with the correct authoritative name server
+;;   -- update the SOA record with the contact e-mail address information
+;;   -- update the NS record(s) with the authoritative name servers for this domain.
+;;
+;; For further information, please consult the BIND documentation
+;; located on the following website:
+;;
+;; http://www.isc.org/
+;;
+;; And RFC 1035:
+;;
+;; http://www.ietf.org/rfc/rfc1035.txt
+;;
+;; Please note that we do NOT offer technical support for any use
+;; of this zone data, the BIND name server, or any other third-party
+;; DNS software.
+;;
+;; Use at your own risk.
+;; SOA Record
+jimchen.me	3600	IN	SOA	collins.ns.cloudflare.com. dns.cloudflare.com. 2047856190 10000 2400 604800 3600
+
+;; NS Records
+jimchen.me.	86400	IN	NS	collins.ns.cloudflare.com.
+jimchen.me.	86400	IN	NS	jacob.ns.cloudflare.com.
+
+;; A Records
+bucket.jimchen.me.	1	IN	A	3.228.73.172
+chat.jimchen.me.	1	IN	A	3.228.73.172
+feed.jimchen.me.	1	IN	A	3.228.73.172
+git.jimchen.me.	1	IN	A	3.228.73.172
+grafana.jimchen.me.	1	IN	A	3.228.73.172
+jimchen.me.	1	IN	A	3.228.73.172
+link.jimchen.me.	1	IN	A	3.228.73.172
+llm.jimchen.me.	1	IN	A	3.228.73.172
+markdown.jimchen.me.	1	IN	A	3.228.73.172
+mastodon.jimchen.me.	1	IN	A	3.228.73.172
+matrix.jimchen.me.	1	IN	A	3.228.73.172
+nezha.jimchen.me.	1	IN	A	3.228.73.172
+peertube.jimchen.me.	1	IN	A	3.228.73.172
+portainer.jimchen.me.	1	IN	A	3.228.73.172
+
+;; CNAME Records
+cdn.jimchen.me.	1	IN	CNAME	public.r2.dev.
