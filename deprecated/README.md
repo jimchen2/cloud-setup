@@ -142,3 +142,47 @@ sudo docker run -d -p 3210:3210 --env-file .env --restart always --name lobe-cha
 sudo certbot certonly --standalone -d lobe.jimchen.me --email jimchen4214@gmail.com --non-interactive --agree-tos
 sudo ln -sf /etc/nginx/sites-available/chat.jimchen.me.conf /etc/nginx/sites-enabled/
 ```
+
+
+## [nezha](https://github.com/naiba/nezha)
+
+url: [nezha.jimchen.me](https://nezha.jimchen.me)
+
+```bash
+curl -L https://raw.githubusercontent.com/naiba/nezha/master/script/install.sh -o nezha.sh && chmod +x nezha.sh && sudo ./nezha.sh
+# expose port 8008 and 5555
+```
+
+## [miniflux](https://github.com/miniflux/v2)
+
+url: [feed.jimchen.me](https://feed.jimchen.me)
+
+```
+docker run -d \
+  --restart always \
+  -p 8092:8080 \
+  --name miniflux \
+  -e DATABASE_URL="postgresql://miniflux:@:5432/miniflux?sslmode=disable" \
+  -e RUN_MIGRATIONS=1 \
+  -e CREATE_ADMIN=1 \
+  -e ADMIN_USERNAME=admin \
+  -e ADMIN_PASSWORD= \
+  docker.io/miniflux/miniflux:latest
+```
+
+## [grafana](https://github.com/grafana/grafana/)
+
+url: [grafana.jimchen.me](https://grafana.jimchen.me)
+
+```
+docker run -d \
+  --name=grafana \
+  --restart=always \
+  -p 3088:3000 \
+  -v grafana-storage:/var/lib/grafana \
+  -e "GF_AWS_PROFILES=default" \
+  -e "GF_AWS_default_ACCESS_KEY_ID=" \
+  -e "GF_AWS_default_SECRET_ACCESS_KEY=" \
+  -e "GF_AWS_default_REGION=us-east-1" \
+  grafana/grafana-enterprise
+```
