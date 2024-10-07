@@ -186,3 +186,22 @@ docker run -d \
   -e "GF_AWS_default_REGION=us-east-1" \
   grafana/grafana-enterprise
 ```
+
+## [chatgpt-next-web](https://github.com/ChatGPTNextWeb/ChatGPT-Next-Web)
+
+url: [chat.jimchen.me](https://chat.jimchen.me)
+
+env:
+
+```
+OPENAI_API_KEY=
+GOOGLE_API_KEY=
+
+CODE=
+```
+
+Then
+
+```
+sudo docker run -d -p 3000:3000 --env-file .env --restart always yidadaa/chatgpt-next-web
+```

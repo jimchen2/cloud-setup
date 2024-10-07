@@ -45,25 +45,6 @@ url: [llm.jimchen.me](https://llm.jimchen.me)
 
 url: [jimchen.me](https://jimchen.me)
 
-## [chatgpt-next-web](https://github.com/ChatGPTNextWeb/ChatGPT-Next-Web)
-
-url: [chat.jimchen.me](https://chat.jimchen.me)
-
-env:
-
-```
-OPENAI_API_KEY=
-GOOGLE_API_KEY=
-
-CODE=
-```
-
-Then
-
-```
-sudo docker run -d -p 3000:3000 --env-file .env --restart always yidadaa/chatgpt-next-web
-```
-
 ## [portainer](https://github.com/portainer/portainer)
 
 url: [portainer.jimchen.me](https://portainer.jimchen.me)
