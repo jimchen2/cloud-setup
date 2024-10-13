@@ -31,7 +31,6 @@ jimchen.me.	86400	IN	NS	collins.ns.cloudflare.com.
 jimchen.me.	86400	IN	NS	jacob.ns.cloudflare.com.
 
 ;; A Records
-bucket.jimchen.me.	1	IN	A	3.228.73.172
 jimchen.me.	1	IN	A	3.228.73.172
 llm.jimchen.me.	1	IN	A	3.228.73.172
 

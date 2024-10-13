@@ -1,6 +1,5 @@
 (starts_with(http.request.full_uri, "https://jimchen.me") or
- starts_with(http.request.full_uri, "https://cdn.jimchen.me") or
- starts_with(http.request.full_uri, "https://bucket.jimchen.me"))
+ starts_with(http.request.full_uri, "https://cdn.jimchen.me"))
 
 
 

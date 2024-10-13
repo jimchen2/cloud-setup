@@ -20,6 +20,17 @@ docker run -d \
 ```
 
 
+## [alist](https://github.com/alist-org/alist)
+
+url: [bucket.jimchen.me](https://bucket.jimchen.me)
+
+```sh
+docker run -d --restart=always -v /etc/alist:/opt/alist/data -p 5244:5244 -e PUID=0 -e PGID=0 -e UMASK=022 --name="alist" xhofe/alist:latest
+docker exec -it alist ./alist admin set password
+```
+
+
+
 ## [markdown-parser](https://github.com/jimchen2/markdown-parser)
 
 url: [markdown.jimchen.me](https://markdown.jimchen.me)
