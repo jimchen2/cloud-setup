@@ -32,7 +32,6 @@ jimchen.me.	86400	IN	NS	jacob.ns.cloudflare.com.
 
 ;; A Records
 jimchen.me.	1	IN	A	3.228.73.172
-llm.jimchen.me.	1	IN	A	3.228.73.172
 
 ;; CNAME Records
 cdn.jimchen.me.	1	IN	CNAME	public.r2.dev.
