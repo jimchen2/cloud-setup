@@ -31,13 +31,7 @@ jimchen.me.	86400	IN	NS	collins.ns.cloudflare.com.
 jimchen.me.	86400	IN	NS	jacob.ns.cloudflare.com.
 
 ;; A Records
-bucket.jimchen.me.	1	IN	A	3.228.73.172
-git.jimchen.me.	1	IN	A	3.228.73.172
 jimchen.me.	1	IN	A	3.228.73.172
-llm.jimchen.me.	1	IN	A	3.228.73.172
-mastodon.jimchen.me.	1	IN	A	3.228.73.172
-matrix.jimchen.me.	1	IN	A	3.228.73.172
-peertube.jimchen.me.	1	IN	A	3.228.73.172
 
 ;; CNAME Records
 cdn.jimchen.me.	1	IN	CNAME	public.r2.dev.

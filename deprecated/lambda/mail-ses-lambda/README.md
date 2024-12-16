@@ -15,7 +15,7 @@ This is done in order
 
 ## Event Rules
 
-1. Save in S3 raw(Configure only `info@jimchen.me` to receive emails please)
+1. Save in S3 raw(Configure only to receive emails please)
 2. Workmail integration(this is workmail IMAP, not for SES)
 
 ## Lambda Configuration

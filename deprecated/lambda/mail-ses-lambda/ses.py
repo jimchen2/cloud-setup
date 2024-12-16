@@ -76,7 +76,7 @@ def get_email_body(msg):
 def forward_email(msg):
     new_msg = MIMEMultipart('mixed')
     new_recipient = 'jimchen@mail.jimchen.me'
-    verified_sender = 'info@jimchen.me'  # Your verified email address
+    verified_sender = 
 
     original_from = msg['From']
     original_subject = msg['Subject']
