@@ -1,3 +1,39 @@
+## All Services
+
+- AWS: Bedrock, EC2
+- Cloudflare (Free): R2, DNS
+
+## PLEASE USE INTERNAL PRIVATE IP FOR DATABASE TO AVOID PUBLIC IP FEES
+
+Ports: 443(https), 80(http), 22(ssh), 27017(mongo)
+
+## Nginx
+
+`nginx` files are in `/etc/nginx/sites-available/`
+
+```
+sudo ln -sf /etc/nginx/sites-available/jimchen.me.conf /etc/nginx/sites-enabled/
+sudo ln -sf /etc/nginx/sites-available/llm.jimchen.me.conf /etc/nginx/sites-enabled/
+```
+
+## Cert and Private Key
+
+I use Cloudflare certs and place them in
+
+```
+ssl_certificate /etc/cloudflare/jimchen.me/cert.pem;
+ssl_certificate_key /etc/cloudflare/jimchen.me/privatekey.pem;
+```
+
+## [vercel-bedrock](https://github.com/jimchen2/vercel-bedrock)
+
+url: [llm.jimchen.me](https://llm.jimchen.me)
+
+Using us-east-1 Anthropic
+
+## [jimchen.me](https://github.com/jimchen2/My-Website-New)
+
+url: [jimchen.me](https://jimchen.me)
 
 ## [roundcube](https://roundcube.net/)
 
@@ -19,7 +55,6 @@ docker run -d \
   roundcube/roundcubemail
 ```
 
-
 ## [alist](https://github.com/alist-org/alist)
 
 url: [bucket.jimchen.me](https://bucket.jimchen.me)
@@ -28,8 +63,6 @@ url: [bucket.jimchen.me](https://bucket.jimchen.me)
 docker run -d --restart=always -v /etc/alist:/opt/alist/data -p 5244:5244 -e PUID=0 -e PGID=0 -e UMASK=022 --name="alist" xhofe/alist:latest
 docker exec -it alist ./alist admin set password
 ```
-
-
 
 ## [markdown-parser](https://github.com/jimchen2/markdown-parser)
 
@@ -54,7 +87,6 @@ docker run -d --restart always \
 sudo certbot certonly --standalone -d pdf.jimchen.me --email jimchen4214@gmail.com --non-interactive --agree-tos
 sudo ln -sf /etc/nginx/sites-available/pdf.jimchen.me.conf /etc/nginx/sites-enabled/
 ```
-
 
 ## [metabase](https://github.com/metabase/metabase/)
 
@@ -81,9 +113,7 @@ sudo certbot certonly --standalone -d task.jimchen.me --email jimchen4214@gmail.
 sudo ln -sf /etc/nginx/sites-available/task.jimchen.me.conf /etc/nginx/sites-enabled/
 ```
 
-
 ## [vaultwarden](https://github.com/dani-garcia/vaultwarden)
-
 
 ```
 sudo docker run -d --name vaultwarden -v /vw-data/:/data/ --restart always -p 3001:80 vaultwarden/server:latest
@@ -92,7 +122,6 @@ sudo ln -sf /etc/nginx/sites-available/vault.jimchen.me.conf /etc/nginx/sites-en
 ```
 
 ## [uptime-kuma](https://github.com/louislam/uptime-kuma)
-
 
 ```
 sudo docker run -d --restart=always -p 3002:3001 -v uptime-kuma:/app/data --name uptime-kuma louislam/uptime-kuma:1
@@ -122,9 +151,7 @@ sudo certbot certonly --standalone -d rss.jimchen.me --email jimchen4214@gmail.c
 sudo ln -sf /etc/nginx/sites-available/rss.jimchen.me.conf /etc/nginx/sites-enabled/
 ```
 
-
 ## [nocodb](https://github.com/nocodb/nocodb)
-
 
 ```bash
 # configure docker-compose.yml
@@ -133,9 +160,7 @@ sudo certbot certonly --standalone -d nocodb.jimchen.me --email jimchen4214@gmai
 sudo ln -sf /etc/nginx/sites-available/nocodb.jimchen.me.conf /etc/nginx/sites-enabled/
 ```
 
-
 ## [actual](https://github.com/actualbudget/actual)
-
 
 ```
 
@@ -153,7 +178,6 @@ sudo docker run -d -p 3210:3210 --env-file .env --restart always --name lobe-cha
 sudo certbot certonly --standalone -d lobe.jimchen.me --email jimchen4214@gmail.com --non-interactive --agree-tos
 sudo ln -sf /etc/nginx/sites-available/chat.jimchen.me.conf /etc/nginx/sites-enabled/
 ```
-
 
 ## [nezha](https://github.com/naiba/nezha)
 
@@ -216,7 +240,6 @@ Then
 ```
 sudo docker run -d -p 3000:3000 --env-file .env --restart always yidadaa/chatgpt-next-web
 ```
-
 
 ## [portainer](https://github.com/portainer/portainer)
 
